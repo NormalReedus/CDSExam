@@ -1,2 +1,2 @@
-nuxt/node_modules
-nuxt/.nuxt
+**/node_modules/
+**/.nuxt/
