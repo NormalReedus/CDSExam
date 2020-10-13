@@ -8,7 +8,7 @@
 export default {
   head() {
     return {
-      title: 'CDS Index',
+      title: 'COVID-19 Heatmap',
     }
   },
 }

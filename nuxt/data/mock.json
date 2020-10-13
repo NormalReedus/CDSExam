@@ -1,22 +1,28 @@
-{
-  "02-04-2020": [
-    {
-      "country": "Denmark",
-      "number": 20
-    },
-    {
-      "country": "Afghanistan",
-      "number": 40
-    }
-  ],
-  "03-04-2020": [
-    {
-      "country": "Denmark",
-      "number": 30
-    },
-    {
-      "country": "Afghanistan",
-      "number": 50
-    }
-  ]
-}
+[
+  {
+		"date": "02-04-2020",
+		"records": [
+			{
+				"geoId": "DK",
+				"number": 20
+			},
+			{
+				"geoId": "AF",
+				"number": 40
+			}
+		]
+  },
+  {
+		"date": "03-04-2020",
+		"records": [
+			{
+				"geoId": "DK",
+				"number": 30
+			},
+			{
+				"geoId": "AF",
+				"number": 50
+			}
+		]
+  }
+]

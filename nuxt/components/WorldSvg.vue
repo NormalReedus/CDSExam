@@ -1,6 +1,35 @@
+<script>
+export default {
+  mounted() {
+    // Refs to every country (path) inside the svg:
+    const svgEl = document.querySelectorAll('.map-svg path')
+
+    this.$store.commit('setGeoSvgs', svgEl)
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+svg {
+  fill: var(--disabled-color);
+  stroke: var(--background-color);
+  stroke-width: 0.5px;
+  filter: drop-shadow(0 0 1rem black);
+
+  path {
+    opacity: 0.7;
+    transition: opacity 500ms ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+</style>
+
 <template>
   <svg
-    class="map"
+    class="map-svg"
     xmlns:mapsvg="http://mapsvg.com"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -1541,39 +1570,3 @@
     </path>
   </svg>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      pathIds: [],
-    }
-  },
-
-  mounted() {
-    const paths = document.querySelectorAll('path')
-
-    const pathIds = Array.from(paths).map((el) => el.id)
-    this.pathIds = pathIds
-
-    console.log({ pathIds })
-  },
-}
-</script>
-
-<style lang="scss" scoped>
-svg {
-  fill: var(--text-color);
-  stroke: var(--background-color);
-  stroke-width: 0.5px;
-
-  path {
-    opacity: 0.7;
-    transition: opacity 500ms ease;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-</style>
