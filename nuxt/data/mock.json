@@ -1,0 +1,22 @@
+{
+  "02-04-2020": [
+    {
+      "country": "Denmark",
+      "number": 20
+    },
+    {
+      "country": "Afghanistan",
+      "number": 40
+    }
+  ],
+  "03-04-2020": [
+    {
+      "country": "Denmark",
+      "number": 30
+    },
+    {
+      "country": "Afghanistan",
+      "number": 50
+    }
+  ]
+}
