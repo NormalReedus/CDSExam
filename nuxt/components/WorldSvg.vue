@@ -13,12 +13,12 @@ export default {
 svg {
   fill: var(--disabled-color);
   stroke: var(--background-color);
-  stroke-width: 0.5px;
+  stroke-width: 0.2px;
   filter: drop-shadow(0 0 1rem black);
 
   path {
-    opacity: 0.7;
-    transition: opacity 500ms ease;
+    opacity: 0.8;
+    transition: all 500ms ease;
 
     &:hover {
       opacity: 1;
