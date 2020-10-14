@@ -17,11 +17,11 @@ svg {
   filter: drop-shadow(0 0 1rem black);
 
   path {
-    opacity: 0.8;
+    fill-opacity: 0.85;
     transition: all 500ms ease;
 
     &:hover {
-      opacity: 1;
+      fill-opacity: 1;
     }
   }
 }
