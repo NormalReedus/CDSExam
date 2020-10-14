@@ -1,8 +1,8 @@
 // Fuck yes:
-import mock from '@/data/mock.json'
+import data from '@/data/covid_19.json'
 
 export const state = () => ({
-  covidData: mock,
+  covidData: data,
   currentDataIndex: 0,
   geoSvgs: {}, // geoId props pointing to the svg dom element
 })
@@ -14,9 +14,9 @@ export const mutations = {
     })
   },
 
-  setCurrentCovidData(state, newData) {
-    state.currentCovidData = newData
-  },
+  // setCurrentCovidData(state, newData) {
+  //   state.currentCovidData = newData
+  // },
 
   setCurrentDataIndex(state, index) {
     state.currentDataIndex = index

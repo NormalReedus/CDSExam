@@ -18,7 +18,7 @@ svg {
 
   path {
     fill-opacity: 0.85;
-    transition: all 500ms ease;
+    transition: all 1000ms ease;
     transform-origin: bottom center;
 
     &:hover {

@@ -2,6 +2,7 @@
   <div class="world-container">
     <World />
     <div class="date-slider-container">
+      <!-- <Radios /> -->
       <form class="date-slider-options">
         <h3>Timeline speed:</h3>
         <input
@@ -104,16 +105,18 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['setCurrentCovidData', 'setCurrentDataIndex']),
+    ...mapMutations(['setCurrentDataIndex']),
 
-    updateMap(currentData) {
-      currentData.records.forEach((record) => {
+    updateMap() {
+      for (const record of this.currentCovidData.records) {
+        if (!this.geoSvgs[record.geoId]) continue
+
         this.geoSvgs[record.geoId].style.fill = this.mapColorOpacity(
           process.env.covidColor,
-          record.number,
-          100 //! GET MAX VALUE
+          record.cases,
+          100000 //! GET MAX VALUE
         )
-      })
+      }
     },
 
     mapColorOpacity(colorHex, number, max) {
@@ -155,7 +158,7 @@ export default {
   },
 
   mounted() {
-    this.updateMap(this.currentCovidData)
+    this.updateMap()
   },
 }
 </script>
@@ -244,7 +247,7 @@ export default {
     width: 100%;
     height: 5px;
     cursor: pointer;
-    animate: 0.2s;
+    animation: 0.2s;
     background: var(--disabled-color);
     border-radius: 1px;
   }
@@ -266,7 +269,7 @@ export default {
     width: 100%;
     height: 5px;
     cursor: pointer;
-    animate: 0.2s;
+    animation: 0.2s;
     background: var(--disabled-color);
     border-radius: 1px;
   }
@@ -286,7 +289,7 @@ export default {
     width: 100%;
     height: 5px;
     cursor: pointer;
-    animate: 0.2s;
+    animation: 0.2s;
     background: transparent;
     border-color: transparent;
     color: transparent;

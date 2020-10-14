@@ -4,11 +4,11 @@
 		"records": [
 			{
 				"geoId": "DK",
-				"number": 20
+				"cases": 20
 			},
 			{
 				"geoId": "AF",
-				"number": 40
+				"cases": 40
 			}
 		]
   },
@@ -17,11 +17,11 @@
 		"records": [
 			{
 				"geoId": "DK",
-				"number": 30
+				"cases": 30
 			},
 			{
 				"geoId": "AF",
-				"number": 70
+				"cases": 70
 			}
 		]
   }
