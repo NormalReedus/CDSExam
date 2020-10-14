@@ -39,13 +39,13 @@ with urllib.request.urlopen(covid19_data_url) as covid_19_json:
     #I use my helper function to get an array of dates and run through them.
     for date in get_unique_dates(covid19_dict):
         #This is the form i want the data to be in, so i create the template dictionary
-        date_dict = {'date': date, 'countries': []}
+        date_dict = {'date': date, 'records': []}
 
         #I run through the entire dataset again, and gather all the data points with the corresponding data.
         #When found, the entire chunk of data is appended into the countries key in the dictionary.
         for entry in covid19_dict:
             if entry['dateRep'] == date:
-                date_dict['countries'].append(entry)
+                date_dict['records'].append(entry)
 
         #The entire dictionary is then appended to the list.
         data_correct_form.append(date_dict)
