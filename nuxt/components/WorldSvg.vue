@@ -12,16 +12,18 @@ export default {
 <style lang="scss" scoped>
 svg {
   fill: var(--disabled-color);
-  stroke: var(--background-color);
-  stroke-width: 0.2px;
+  // stroke: var(--background-color);
+  // stroke-width: 0.2px;
   filter: drop-shadow(0 0 1rem black);
 
   path {
     fill-opacity: 0.85;
     transition: all 500ms ease;
+    transform-origin: bottom center;
 
     &:hover {
       fill-opacity: 1;
+      transform: translateY(-0.3%);
     }
   }
 }

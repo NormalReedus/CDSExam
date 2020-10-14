@@ -3,7 +3,7 @@ import mock from '@/data/mock.json'
 
 export const state = () => ({
   covidData: mock,
-  currentCovidData: mock[0], // Defaults to first entry
+  currentDataIndex: 0,
   geoSvgs: {}, // geoId props pointing to the svg dom element
 })
 
@@ -16,5 +16,15 @@ export const mutations = {
 
   setCurrentCovidData(state, newData) {
     state.currentCovidData = newData
+  },
+
+  setCurrentDataIndex(state, index) {
+    state.currentDataIndex = index
+  },
+}
+
+export const getters = {
+  currentCovidData(state) {
+    return state.covidData[state.currentDataIndex]
   },
 }

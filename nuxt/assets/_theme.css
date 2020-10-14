@@ -3,6 +3,7 @@
 :root {
 	--background-color: #18181b;
 	--disabled-color: #A1A1B5;
+	--danger-color: #980000;
 	--text-color: #fff;
 	--heading-font: Ubuntu;
 	--heading-weight: 500;
