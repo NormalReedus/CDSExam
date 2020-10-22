@@ -42,7 +42,7 @@ covid_19_data_path = "../input_data/covid_19_records.json"
 # The file is opened from the url via the urllib library
 with open(covid_19_data_path) as covid_19_json:
     # The file contains a list "records" which holds the information
-    covid_19_list = json.loads(covid_19_json.read())
+    covid_19_list = json.loads(covid_19_json.read())['records']
 
     # An array for the finished data is created
     data_correct_form = []
