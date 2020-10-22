@@ -42,27 +42,29 @@ covid_19_data_path = "../input_data/covid_19_records.json"
 # The file is opened from the url via the urllib library
 with open(covid_19_data_path) as covid_19_json:
     # The file contains a list "records" which holds the information
-    covid_19_list = json.loads(covid_19_json.read())['records']
+    covid_19_dict = json.loads(covid_19_json.read())
 
     # An array for the finished data is created
     data_correct_form = []
 
     # I use my helper function to get an array of dates and run through them.
-    for date in get_unique_dates(covid_19_list):
+    for date in get_unique_dates(covid_19_dict['records']):
         # This is the form i want the data to be in, so i create the template dictionary
         date_dict = {'date': date, 'records': []}
 
         # I run through the entire dataset again, and gather all the data points with the corresponding data.
         # When found, the entire chunk of data is appended into the countries key in the dictionary.
-        for entry in covid_19_list:
+        for entry in covid_19_dict['records']:
             if entry['dateRep'] == date:
                 date_dict['records'].append(entry)
 
         # The entire dictionary is then appended to the list.
         data_correct_form.append(date_dict)
-    
+
+    covid_19_dict['records'] = data_correct_form
+
     # The new data list is transformed into json format.
-    data_correct_form_json = json.dumps(data_correct_form)
+    data_correct_form_json = json.dumps(covid_19_dict)
 
     # The end folder is located and the file inside is updated with the new information.
     with open('../temporary_data/covid_19_transformed.json', 'w') as output:
