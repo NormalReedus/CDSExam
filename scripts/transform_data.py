@@ -1,6 +1,10 @@
 import json
 import os
 
+# Change cwd to this file's dir, so we can use a relative path when saving the json:
+this_dir = os.path.dirname(os.path.realpath(__file__))
+os.chdir(this_dir)
+
 # This script loads a json from opendata.ecdc.europra.eu
 # and transforms it into a json file on the form:
 # { date: "some date"
@@ -26,16 +30,6 @@ def get_unique_dates(covid_19_list):
         
     return used_dates
 
-def get_max_deaths_and_cases(covid_19_list):
-    deaths = [entry['deaths'] for entry in covid_19_list]
-    cases = [entry['cases'] for entry in covid_19_list]
-
-    return (max(deaths), max(cases))
-
-# Change cwd to this file's dir, so we can use a relative path when saving the json:
-this_dir = os.path.dirname(os.path.realpath(__file__))
-os.chdir(this_dir)
-
 # The path from which the json is downloaded
 covid_19_data_path = "../input_data/covid_19_records.json"
 
@@ -50,13 +44,13 @@ with open(covid_19_data_path) as covid_19_json:
     # I use my helper function to get an array of dates and run through them.
     for date in get_unique_dates(covid_19_dict['records']):
         # This is the form i want the data to be in, so i create the template dictionary
-        date_dict = {'date': date, 'records': []}
+        date_dict = {'date': date, 'data': []}
 
         # I run through the entire dataset again, and gather all the data points with the corresponding data.
         # When found, the entire chunk of data is appended into the countries key in the dictionary.
         for entry in covid_19_dict['records']:
             if entry['dateRep'] == date:
-                date_dict['records'].append(entry)
+                date_dict['data'].append(entry)
 
         # The entire dictionary is then appended to the list.
         data_correct_form.append(date_dict)
