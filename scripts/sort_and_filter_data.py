@@ -1,6 +1,8 @@
 import json
 import os
 
+print('Step 4: Sorting and filtering the data for the visualization...')
+
 # This script sorts the covid_19_transformed.json, filters away the redundant properties
 # and merges the json-file with the covid_19_max_values.json
 # The output is putinto the output_data folder. 
@@ -31,4 +33,4 @@ with open(max_value_path) as max_values, open(covid_19_path) as covid_19_data:
     with open("../output_data/covid_19_final.json", "w") as output:
         output.write(json.dumps(output_dict))
 
-
+print('DONE: sort_and_filter_data.py\n')

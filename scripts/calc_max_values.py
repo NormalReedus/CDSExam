@@ -1,6 +1,8 @@
 import json
 import os
 
+print('Step 2: Calculating max covid-19 cases and deaths...')
+
 # Change cwd to this file's dir, so we can use a relative path when saving and loading the json:
 this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
@@ -24,3 +26,5 @@ with open('../input_data/covid_19_records.json') as input_file:
 
 	with open('../temporary_data/covid_19_max_values.json', 'w') as output_file:
 		json.dump(max_vals, output_file)
+
+print('DONE: calc_max_values.py\n')

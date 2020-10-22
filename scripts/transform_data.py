@@ -1,6 +1,8 @@
 import json
 import os
 
+print('Step 3: Transforming the data to make it easier to work with...')
+
 # Change cwd to this file's dir, so we can use a relative path when saving the json:
 this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
@@ -64,6 +66,4 @@ with open(covid_19_data_path) as covid_19_json:
     with open('../temporary_data/covid_19_transformed.json', 'w') as output:
         output.write(data_correct_form_json)
 
-
-
-
+print('DONE: transform_data.py\n')
