@@ -22,6 +22,9 @@ def compare_function(e):
     split_date = e["date"].split("/")
     return int(split_date[2] + split_date[1] + split_date[0])
  
+# loads both covid_19_max_values.json and covid_19_transformed.json
+# sorts the records list in the data and merges the two files into a final product
+# Filtering might be added later
 with open(max_value_path) as max_values, open(covid_19_path) as covid_19_data:
     covid_19_dict = json.loads(covid_19_data.read())
     output_dict = json.loads(max_values.read())
