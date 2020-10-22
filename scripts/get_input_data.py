@@ -8,10 +8,9 @@ covid_19_data_url = "https://opendata.ecdc.europa.eu/covid19/casedistribution/js
 this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
 
-with urllib.request.urlopen(covid_19_data_url) as covid_19_json:
-	# The file contains a list "records" which holds the information:
-	covid_19_dict = json.loads(covid_19_json.read())['records']
+with urllib.request.urlopen(covid_19_data_url) as file:
+	covid_19_json = json.dumps(json.loads(file.read()))
 
 	# We save the fetched data to file:
 	with open('../input_data/covid_19_records.json', 'w') as output_file:
-		json.dump(covid_19_dict, output_file)
+		output_file.write(covid_19_json)
