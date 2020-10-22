@@ -1,7 +1,6 @@
 import json
 import urllib.request
 import os
-from pathlib import Path
 
 covid_19_data_url = "https://opendata.ecdc.europa.eu/covid19/casedistribution/json/"
 
