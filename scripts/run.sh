@@ -12,3 +12,4 @@ cd "${BASH_SOURCE%/*}"
 python get_input_data.py
 python calc_max_values.py
 python transform_data.py
+python sort_and_filter_data.py

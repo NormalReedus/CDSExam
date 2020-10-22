@@ -16,7 +16,7 @@ def get_max_values(covid_19_records):
 
 	return { "max_deaths": max(deaths), "max_cases": max(cases), "max_cases_per_pop": max(cases_per_pop), "max_deaths_per_pop": max(deaths_per_pop) }
 
-
+# Data has not yet been transformed, since it is easier to loop through before nesting data with dates:
 with open('../input_data/covid_19_records.json') as input_file:
 	covid_19_records = json.loads(input_file.read())['records']
 
