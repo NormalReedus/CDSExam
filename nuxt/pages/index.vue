@@ -108,7 +108,7 @@ export default {
     ...mapMutations(['setCurrentDataIndex']),
 
     updateMap() {
-      for (const record of this.currentCovidData.records) {
+      for (const record of this.currentCovidData.data) {
         if (!this.geoSvgs[record.geoId]) continue
 
         this.geoSvgs[record.geoId].style.fill = this.mapColorOpacity(
