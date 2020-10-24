@@ -33,7 +33,7 @@ def get_unique_dates(covid_19_list):
     return used_dates
 
 # The path from which the json is downloaded
-covid_19_data_path = "../input_data/covid_19_records.json"
+covid_19_data_path = "../data/input/covid_19_records.json"
 
 # The file is opened from the url via the urllib library
 with open(covid_19_data_path) as covid_19_json:
@@ -63,7 +63,7 @@ with open(covid_19_data_path) as covid_19_json:
     data_correct_form_json = json.dumps(covid_19_dict)
 
     # The end folder is located and the file inside is updated with the new information.
-    with open('../temporary_data/covid_19_transformed.json', 'w') as output:
+    with open('../data/temp/covid_19_transformed.json', 'w') as output:
         output.write(data_correct_form_json)
 
 print('DONE: transform_data.py\n')

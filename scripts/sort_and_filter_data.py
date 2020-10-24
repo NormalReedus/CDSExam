@@ -12,8 +12,8 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
 
 # Paths to the json files we need
-max_value_path = "../temporary_data/covid_19_max_values.json"
-covid_19_path = "../temporary_data/covid_19_transformed.json"
+max_value_path = "../data/temp/covid_19_max_values.json"
+covid_19_path = "../data/temp/covid_19_transformed.json"
 
 # The sort function takes a compare function
 # When sorting, we want to get the earliest date first
@@ -33,7 +33,7 @@ with open(max_value_path) as max_values, open(covid_19_path) as covid_19_data:
 
     output_dict['records'] = covid_19_dict["records"]
 
-    with open("../output_data/covid_19_final.json", "w") as output:
+    with open("../data/output/covid_19_final.json", "w") as output:
         output.write(json.dumps(output_dict))
 
 print('DONE: sort_and_filter_data.py\n')
