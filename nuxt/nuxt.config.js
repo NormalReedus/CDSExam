@@ -1,6 +1,6 @@
 export default {
   env: {
-    covidColor: '#FF0000',
+    covidColorHue: '0',
     timelineBaseSpeed: 1000, // ms
   },
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)

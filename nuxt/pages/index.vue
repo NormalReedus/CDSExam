@@ -1,5 +1,5 @@
 <template>
-  <div class="world-container">
+  <div class="world-container" :class="{ 'no-transition': !transitions }">
     <World />
     <div class="date-slider-container">
       <!-- <Radios /> -->
@@ -34,16 +34,18 @@
         />
         <label for="fast" class="date-slider-options__label">Fast</label>
       </form>
-      <h6 class="date-slider__date">{{ covidData[0].date }}</h6>
+      <h6 class="date-slider__date">{{ covidRecords[0].date }}</h6>
       <input
         class="date-slider__input"
         type="range"
         min="0"
-        :max="covidData.length - 1"
-        v-model="currentDataIndex"
+        :max="covidRecords.length - 1"
+        @change="currentDataIndex = $event.target.value"
+        :value="currentDataIndex"
+        :title="currentCovidData.date"
       />
       <h6 class="date-slider__date">
-        {{ covidData[covidData.length - 1].date }}
+        {{ covidRecords[covidRecords.length - 1].date }}
       </h6>
     </div>
   </div>
@@ -55,6 +57,7 @@ import { mapState, mapMutations, mapGetters } from 'vuex'
 export default {
   data() {
     return {
+      transitions: true,
       // Vue internals use '_', so we have to access through this.$data:
       _timelineSpeedModifier: 0,
       _runningTimeoutId: null,
@@ -62,7 +65,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['covidData', 'geoSvgs']),
+    ...mapState(['covidRecords', 'geoSvgs']),
     ...mapGetters(['currentCovidData']),
 
     currentDataIndex: {
@@ -109,36 +112,42 @@ export default {
 
     updateMap() {
       for (const record of this.currentCovidData.data) {
-        if (!this.geoSvgs[record.geoId]) continue
+        const element = this.geoSvgs[record.geoId]
 
-        this.geoSvgs[record.geoId].style.fill = this.mapColorOpacity(
-          process.env.covidColor,
+        if (!element) continue
+
+        // Set colour intensity:
+        element.style.fill = this.mapColorIntensity(
           record.cases,
-          100000 //! GET MAX VALUE
+          this.$store.state.covidMaxVals.cases
         )
+
+        // Edit title:
+        const titleText = `${record.countriesAndTerritories} - ${record.cases} cases`.replace(
+          /_/g,
+          ' '
+        )
+        element.firstChild.textContent = titleText
       }
     },
 
-    mapColorOpacity(colorHex, number, max) {
-      const opacity = number / max
+    mapColorIntensity(val, maxVal) {
+      const intensity = val / maxVal
+      const hue = 0
+      const saturation = 50 + intensity * 50
+      const lightness = 5 + intensity * 50
 
-      const byteOpacity = Math.round(opacity * 255)
+      // const hue = 100 - intensity * 100
+      // const saturation = intensity * 100
+      // const lightness = 50
 
-      let hexOpacity
-
-      if (opacity * 100 < 7) {
-        hexOpacity = '0' + byteOpacity.toString(16)
-      } else {
-        hexOpacity = byteOpacity.toString(16)
-      }
-
-      return colorHex + hexOpacity
+      return `hsl(${hue}, ${saturation}%, ${lightness}%)`
     },
 
     useTimeline() {
       if (this.$data._timelineSpeedModifier == 0) return
 
-      if (this.currentDataIndex == this.covidData.length - 1) {
+      if (this.currentDataIndex == this.covidRecords.length - 1) {
         this.currentDataIndex = 0
       } else {
         this.currentDataIndex++

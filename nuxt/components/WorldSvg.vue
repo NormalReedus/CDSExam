@@ -3,7 +3,6 @@ export default {
   mounted() {
     // Refs to every country (path) inside the svg:
     const svgEl = document.querySelectorAll('.map-svg path')
-
     this.$store.commit('setGeoSvgs', svgEl)
   },
 }
@@ -17,14 +16,14 @@ svg {
   filter: drop-shadow(0 0 1rem black);
 
   path {
-    fill-opacity: 0.85;
+    // fill-opacity: 0.85;
     transition: all 1000ms ease;
     transform-origin: bottom center;
 
-    &:hover {
-      fill-opacity: 1;
-      transform: translateY(-0.3%);
-    }
+    // &:hover {
+    //   fill-opacity: 1;
+    //   transform: translateY(-0.3%);
+    // }
   }
 }
 </style>
