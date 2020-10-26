@@ -36,6 +36,7 @@ export default {
           themes: {
             dark: {
               background: '#18181b',
+              primary: 'red',
             },
           },
         },

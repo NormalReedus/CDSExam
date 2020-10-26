@@ -8,21 +8,25 @@
   >
     <v-row>
       <v-col cols="2">
-        <input
+        <v-checkbox
+          v-model="transitions"
+          label="Animations"
+          color="red"
+        ></v-checkbox>
+        <!-- <input
           type="checkbox"
           class="transitions-checkbox"
           value="transitions"
           v-model="transitions"
-        />
+        /> -->
       </v-col>
       <v-col cols="8">
         <World class="map" />
       </v-col>
-      <v-col cols="2">
+      <!-- <v-col cols="2">
         <div class="test"></div>
-      </v-col>
+      </v-col> -->
     </v-row>
-    <!-- <v-col></v-col> -->
     <v-row>
       <Timeline class="timeline" />
     </v-row>
