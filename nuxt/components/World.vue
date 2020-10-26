@@ -1,18 +1,67 @@
 <template>
   <div class="map-container">
     <!-- <transition name="title" mode="out-in"> -->
-    <h2 class="map-title" :key="currentDate">{{ currentDate }}</h2>
+    <h2 class="map-title" :key="currentCovidData.date">
+      {{ currentCovidData.date }}
+    </h2>
     <!-- </transition> -->
     <WorldSvg />
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 export default {
-  computed: {
-    currentDate() {
-      return this.$store.getters.currentCovidData.date
+  watch: {
+    currentCovidData(newData, oldData) {
+      this.updateMap(newData)
     },
+  },
+
+  computed: {
+    ...mapState(['geoSvgs']),
+    ...mapGetters(['currentCovidData']),
+  },
+
+  methods: {
+    updateMap() {
+      for (const record of this.currentCovidData.data) {
+        const element = this.geoSvgs[record.geoId]
+
+        if (!element) continue
+
+        // Set colour intensity:
+        element.style.fill = this.mapColorIntensity(
+          record.cases,
+          this.$store.state.covidMaxVals.cases
+        )
+
+        // Underscores to spaces:
+        const titleText = `${record.countriesAndTerritories} - ${record.cases} cases`.replace(
+          /_/g,
+          ' '
+        )
+        element.firstChild.textContent = titleText
+      }
+    },
+
+    mapColorIntensity(val, maxVal) {
+      const intensity = val / maxVal
+      const hue = 0
+      const saturation = 50 + intensity * 50
+      const lightness = 5 + intensity * 50
+
+      // const hue = 100 - intensity * 100
+      // const saturation = intensity * 100
+      // const lightness = 50
+
+      return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+    },
+  },
+
+  mounted() {
+    this.updateMap()
   },
 }
 </script>

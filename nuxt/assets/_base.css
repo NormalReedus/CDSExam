@@ -1,6 +1,6 @@
 body {
-  background-color: var(--background-color);
-	color: var(--text-color);
+  /* background-color: var(--background-color); */
+	/* color: var(--text-color); */
 }
 
 .no-transition *:not(.map-title) {
