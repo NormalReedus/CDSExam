@@ -1,35 +1,16 @@
 <template>
-  <form class="date-slider-options">
-    <h3>Timeline speed:</h3>
-    <input
-      class="date-slider-options__radio"
-      type="radio"
-      name="speed"
-      id="off"
-      value="0"
+  <div>
+    <h3 class="timeline-options__title">Timeline speed:</h3>
+    <v-radio-group
+      class="timeline-options__radios"
       v-model="timelineSpeedModifier"
-      checked
-    />
-    <label for="off" class="date-slider-options__label">Off</label>
-    <input
-      class="date-slider-options__radio"
-      type="radio"
-      name="speed"
-      id="slow"
-      value="1"
-      v-model="timelineSpeedModifier"
-    />
-    <label for="slow" class="date-slider-options__label">Slow</label>
-    <input
-      class="date-slider-options__radio"
-      type="radio"
-      name="speed"
-      id="fast"
-      value="2"
-      v-model="timelineSpeedModifier"
-    />
-    <label for="fast" class="date-slider-options__label">Fast</label>
-  </form>
+      row
+    >
+      <v-radio label="Off" :value="0" color="red"></v-radio>
+      <v-radio label="Slow" :value="1" color="red"></v-radio>
+      <v-radio label="Fast" :value="2" color="red"></v-radio>
+    </v-radio-group>
+  </div>
 </template>
 
 <script>
@@ -50,7 +31,7 @@ export default {
 
     currentDataIndex: {
       get() {
-        return this.$tore.state.currentDataIndex
+        return this.$store.state.currentDataIndex
       },
 
       set(index) {
@@ -103,14 +84,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.date-slider {
-  &-options {
-    margin-right: 2rem;
-
-    &__label {
-      margin-right: 0.5rem;
-      font-style: italic;
-    }
-  }
+.timeline-options__radios {
+  margin-top: 0;
 }
 </style>

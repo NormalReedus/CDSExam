@@ -13,12 +13,13 @@
       :title="currentCovidData.date"
     /> -->
     <v-slider
+      dense
       min="0"
       :max="covidRecords.length - 1"
-      @end="currentDataIndex = $event"
       :value="currentDataIndex"
       :title="currentCovidData.date"
-      thumb-color="red"
+      @change="currentDataIndex = $event"
+      color="red"
       thumb-label
       thumb-size="0"
     >
