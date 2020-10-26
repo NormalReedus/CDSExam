@@ -11,6 +11,8 @@ export const state = () => ({
   covidRecords: data.records,
   currentDataIndex: 0,
   geoSvgs: {}, // geoId props pointing to the svg dom element
+  transitions: true,
+  covidVariable: 'cases', // 'deaths', 'deathsPerCap', 'casesPerCap'
 })
 
 export const mutations = {
@@ -22,6 +24,13 @@ export const mutations = {
 
   setCurrentDataIndex(state, index) {
     state.currentDataIndex = index
+  },
+
+  setTransitions(state, val) {
+    state.transitions = val
+  },
+  setCovidVariable(state, val) {
+    state.covidVariable = val
   },
 }
 

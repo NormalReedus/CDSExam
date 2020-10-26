@@ -28,17 +28,18 @@ export default {
     updateMap() {
       for (const record of this.currentCovidData.data) {
         const element = this.geoSvgs[record.geoId]
+        const covidVariable = this.$store.state.covidVariable
 
         if (!element) continue
 
         // Set colour intensity:
         element.style.fill = this.mapColorIntensity(
-          record.cases,
-          this.$store.state.covidMaxVals.cases
+          record[covidVariable],
+          this.$store.state.covidMaxVals[covidVariable]
         )
 
         // Underscores to spaces:
-        const titleText = `${record.countriesAndTerritories} - ${record.cases} cases`.replace(
+        const titleText = `${record.countriesAndTerritories} - ${record[covidVariable]} ${covidVariable}`.replace(
           /_/g,
           ' '
         )
@@ -49,8 +50,8 @@ export default {
     mapColorIntensity(val, maxVal) {
       const intensity = val / maxVal
       const hue = 0
-      const saturation = 50 + intensity * 50
-      const lightness = 5 + intensity * 50
+      const saturation = 70 + intensity * 30
+      const lightness = 15 + intensity * 70
 
       // const hue = 100 - intensity * 100
       // const saturation = intensity * 100
@@ -72,8 +73,7 @@ export default {
 
   color: var(--text-color);
 
-  font-family: var(--heading-font);
-  font-weight: var(--heading-weight);
+  // font-weight: var(--heading-weight);
 
   position: absolute;
 }

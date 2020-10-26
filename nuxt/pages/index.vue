@@ -7,41 +7,37 @@
     fluid
   >
     <v-row>
-      <v-col cols="2">
-        <v-checkbox
-          v-model="transitions"
-          label="Animations"
-          color="red"
-        ></v-checkbox>
-        <!-- <input
-          type="checkbox"
-          class="transitions-checkbox"
-          value="transitions"
-          v-model="transitions"
-        /> -->
+      <v-col cols="3" class="pl-6">
+        <Options @updateMap="callUpdateMap" />
       </v-col>
-      <v-col cols="8">
-        <World class="map" />
+      <v-col cols="9">
+        <World class="map" ref="world" />
       </v-col>
-      <!-- <v-col cols="2">
-        <div class="test"></div>
-      </v-col> -->
     </v-row>
     <v-row>
-      <Timeline class="timeline" />
+      <v-col cols="3" class="pl-6">
+        <TimelineOptions />
+      </v-col>
+      <v-col cols="9">
+        <Timeline class="timeline" />
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      transitions: true,
-    }
+  computed: {
+    transitions() {
+      return this.$store.state.transitions
+    },
   },
 
-  methods: {},
+  methods: {
+    callUpdateMap() {
+      this.$refs.world.updateMap()
+    },
+  },
 
   head() {
     return {

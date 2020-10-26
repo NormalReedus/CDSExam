@@ -1,16 +1,20 @@
 <template>
-  <div>
-    <h3 class="timeline-options__title">Timeline speed:</h3>
-    <v-radio-group
-      class="timeline-options__radios"
-      v-model="timelineSpeedModifier"
-      row
-    >
-      <v-radio label="Off" :value="0" color="red"></v-radio>
-      <v-radio label="Slow" :value="1" color="red"></v-radio>
-      <v-radio label="Fast" :value="2" color="red"></v-radio>
-    </v-radio-group>
-  </div>
+  <v-card elevation="4">
+    <v-card-title class="justify-center">Timeline speed</v-card-title>
+    <v-divider class="mx-16"></v-divider>
+    <v-card-text>
+      <v-radio-group
+        dense
+        class="timeline-options__radios"
+        v-model="timelineSpeedModifier"
+        row
+      >
+        <v-radio label="Off" :value="0" color="red" class="mr-2"></v-radio>
+        <v-radio label="Slow" :value="1" color="red" class="mr-2"></v-radio>
+        <v-radio label="Fast" :value="2" color="red" class="mr-2"></v-radio>
+      </v-radio-group>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -84,13 +88,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.timeline-options {
-  &__radios {
-    margin-top: 0;
-  }
+.v-input {
+  margin-top: 0;
+}
 
-  &__title {
-    text-align: center;
-  }
+.v-card__text {
+  padding-bottom: 0;
 }
 </style>
