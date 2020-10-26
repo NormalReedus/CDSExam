@@ -84,7 +84,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.timeline-options__radios {
-  margin-top: 0;
+.timeline-options {
+  &__radios {
+    margin-top: 0;
+  }
+
+  &__title {
+    text-align: center;
+  }
 }
 </style>
