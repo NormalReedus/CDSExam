@@ -9,6 +9,17 @@
     <v-row>
       <v-col cols="3" class="pl-6">
         <Options @updateMap="callUpdateMap" />
+        <v-spacer></v-spacer>
+        <TimelineOptions />
+      </v-col>
+      <v-col cols="9">
+        <World class="map" ref="world" />
+        <Timeline class="timeline" />
+      </v-col>
+    </v-row>
+    <!-- <v-row>
+      <v-col cols="3" class="pl-6">
+        <Options @updateMap="callUpdateMap" />
       </v-col>
       <v-col cols="9">
         <World class="map" ref="world" />
@@ -21,7 +32,7 @@
       <v-col cols="9">
         <Timeline class="timeline" />
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 

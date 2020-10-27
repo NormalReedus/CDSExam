@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="date-slider-container">
     <h6 class="date-slider__date">{{ covidRecords[0].date }}</h6>
     <v-slider
       class="mb-n5"
@@ -50,10 +50,10 @@ export default {
 <style lang="scss" scoped>
 .date-slider {
   &-container {
-    // display: flex;
-    // align-items: center;
+    display: flex;
+    align-items: center;
 
-    // width: 100%;
+    width: 100%;
     // padding: 0 2rem;
   }
 
