@@ -6,6 +6,15 @@
     ma-0
     fluid
   >
+    <v-progress-circular
+      class="loader"
+      v-if="loading"
+      indeterminate
+      color="red"
+      size="70"
+      width="7"
+    ></v-progress-circular>
+
     <v-row>
       <v-col cols="3" class="pl-6 d-flex flex-column justify-space-between">
         <Settings @updateMap="callUpdateMap" />
@@ -24,6 +33,10 @@ export default {
   computed: {
     transitions() {
       return this.$store.state.transitions
+    },
+
+    loading() {
+      return this.$store.state.loading
     },
   },
 
@@ -46,8 +59,10 @@ export default {
   min-height: 100vh;
 }
 
-.test {
-  background: hotpink;
-  height: 100%;
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

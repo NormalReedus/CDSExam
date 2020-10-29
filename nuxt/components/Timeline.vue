@@ -2,6 +2,7 @@
   <div class="date-slider-container my-4">
     <h6 class="date-slider__date">{{ covidRecords[0].date }}</h6>
     <v-slider
+      :disabled="loading"
       class="mb-n5"
       min="0"
       :max="covidRecords.length - 1"
@@ -29,6 +30,10 @@ export default {
   computed: {
     ...mapState(['covidRecords']),
     ...mapGetters(['currentCovidData']),
+
+    loading() {
+      return this.$store.state.loading
+    },
 
     currentDataIndex: {
       get() {

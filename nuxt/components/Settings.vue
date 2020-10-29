@@ -7,6 +7,7 @@
     <v-card-subtitle>Disable/enable animations:</v-card-subtitle>
     <v-card-text>
       <v-checkbox
+        :disabled="loading"
         v-model="transitions"
         label="Animations"
         color="red"
@@ -17,7 +18,7 @@
 
     <v-card-subtitle>Choose a variable to display:</v-card-subtitle>
     <v-card-text>
-      <v-radio-group v-model="covidVariable">
+      <v-radio-group v-model="covidVariable" :disabled="loading">
         <v-radio label="Cases" value="cases" color="red"></v-radio>
         <v-radio label="Deaths" value="deaths" color="red"></v-radio>
         <v-radio
@@ -40,6 +41,10 @@
 <script>
 export default {
   computed: {
+    loading() {
+      return this.$store.state.loading
+    },
+
     transitions: {
       get() {
         return this.$store.state.transitions

@@ -2,11 +2,12 @@
 import data from '@/data/covid_19_final.json'
 
 export const state = () => ({
+  loading: true,
   covidMaxVals: {
     deaths: data.max_deaths,
     cases: data.max_cases,
-    deathsPerPop: data.max_deaths_per_pop,
-    casesPerPop: data.max_cases_per_pop,
+    deathsPerCap: data.max_deaths_per_cap,
+    casesPerCap: data.max_cases_per_cap,
   },
   covidRecords: data.records,
   currentDataIndex: 0,
@@ -16,6 +17,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  stopLoader(state) {
+    state.loading = false
+  },
+
   setGeoSvgs(state, svgEls) {
     svgEls.forEach((el) => {
       state.geoSvgs[el.id] = el

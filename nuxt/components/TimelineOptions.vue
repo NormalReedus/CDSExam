@@ -4,6 +4,7 @@
     <v-divider class="mx-16"></v-divider>
     <v-card-text>
       <v-radio-group
+        :disabled="loading"
         dense
         class="timeline-options__radios d-flex"
         v-model="timelineSpeedModifier"
@@ -32,6 +33,10 @@ export default {
   computed: {
     ...mapState(['covidRecords']),
     ...mapGetters(['currentCovidData']),
+
+    loading() {
+      return this.$store.state.loading
+    },
 
     currentDataIndex: {
       get() {

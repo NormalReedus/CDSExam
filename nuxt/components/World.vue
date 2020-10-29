@@ -13,6 +13,12 @@
 import { mapState, mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      loading: true,
+    }
+  },
+
   watch: {
     currentCovidData(newData, oldData) {
       this.updateMap(newData)
@@ -63,6 +69,7 @@ export default {
 
   mounted() {
     this.updateMap()
+    this.$store.commit('stopLoader')
   },
 }
 </script>
