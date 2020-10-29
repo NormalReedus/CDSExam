@@ -11,10 +11,8 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
 
 with urllib.request.urlopen(covid_19_data_url) as file:
+	# We read the json, but decode it as plaintext, not bytes:
 	covid_19_json = file.read().decode('utf-8')
-	# string = file.read()
-	# covid_19_dict = json.loads(string)
-	# covid_19_json = json.dumps(covid_19_dict)
 
 	# We save the fetched data to file:
 	with open('../data/input/covid_19_records.json', 'w') as output_file:
