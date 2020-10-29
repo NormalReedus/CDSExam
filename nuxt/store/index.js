@@ -1,5 +1,5 @@
 // Fuck yes:
-import data from '@/data/covid_19_final.json'
+import data from '@/data/covid_19_output.json'
 
 export const state = () => ({
   loading: true,

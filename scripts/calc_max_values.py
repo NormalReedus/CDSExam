@@ -1,20 +1,11 @@
 import json
 import os
 
-print('Step 2: Calculating max covid-19 cases and deaths...')
+print('Step 3: Calculating max covid-19 cases and deaths...')
 
 # Change cwd to this file's dir, so we can use a relative path when saving and loading the json:
 this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
-
-def insert_variable_per_cap_columns(covid_19_records):
-	for record in covid_19_records:
-		if record['popData2019'] == None:
-			continue
-
-
-		record['deaths_per_cap'] = record['deaths'] / record['popData2019']
-		record['cases_per_cap'] = record['cases'] / record['popData2019']
 
 def get_max_values(covid_19_records):
 	# Generate lists of all deaths and cases:
@@ -28,12 +19,10 @@ def get_max_values(covid_19_records):
 	return { "max_deaths": max(deaths), "max_cases": max(cases), "max_cases_per_cap": max(cases_per_cap), "max_deaths_per_cap": max(deaths_per_cap) }
 
 # Data has not yet been transformed, since it is easier to loop through before nesting data with dates:
-with open('../data/input/covid_19_records.json') as input_file:
+with open('../data/temp/covid_19_vals_per_cap.json') as input_file:
 	covid_19_records = json.loads(input_file.read())['records']
 
 	max_vals = get_max_values(covid_19_records)
 
-	with open('../data/temp/covid_19_max_values.json', 'w') as output_file:
+	with open('../data/temp/covid_19_max_vals.json', 'w') as output_file:
 		json.dump(max_vals, output_file)
-
-print('DONE: calc_max_values.py\n')

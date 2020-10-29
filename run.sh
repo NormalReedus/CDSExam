@@ -9,13 +9,19 @@
 cd "${BASH_SOURCE%/*}"
 
 # Order is important:
-python scripts/get_input_data.py
+python scripts/get_raw_data.py
+python scripts/calc_vals_per_cap.py
 python scripts/calc_max_values.py
 python scripts/transform_data.py
 python scripts/sort_and_filter_data.py
-node scripts/prettifyJson.js 'data/output/covid_19_final.json'
+node scripts/prettifyJson.js 'data/output/covid_19_output.json'
 
-echo 'Step 6: Transferring data to the visualizer...'
-cp data/output/covid_19_final.json nuxt/data/covid_19_final.json
+echo 'Step 7: Transferring data to the visualizer...'
+cp data/output/covid_19_output.json nuxt/data/covid_19_output.json
 
-echo 'All done'
+echo 'Step 8: Getting the toolbox...'
+cd nuxt && npm i
+
+echo 'Step 9: Running the visualizer...'
+npm run generate && npm run start
+
