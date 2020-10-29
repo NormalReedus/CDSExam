@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-svg {
+.map-svg {
   fill: var(--disabled-color);
   stroke: var(--background-color);
   stroke-width: 0.2px;
@@ -18,7 +18,6 @@ svg {
   path {
     // fill-opacity: 0.85;
     transition: all 1000ms ease;
-    transform-origin: bottom center;
 
     // &:hover {
     //   fill-opacity: 1;

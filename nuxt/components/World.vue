@@ -76,8 +76,6 @@ export default {
 
 <style lang="scss" scoped>
 .map-title {
-  margin-bottom: 2rem;
-
   color: var(--text-color);
 
   // font-weight: var(--heading-weight);

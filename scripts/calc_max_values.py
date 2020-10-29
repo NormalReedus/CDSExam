@@ -7,6 +7,16 @@ print('Step 2: Calculating max covid-19 cases and deaths...')
 this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
 
+def insert_variable_per_cap_columns(covid_19_records) {
+	for record in covid_19_records:
+		if record['popData2019'] == None:
+			continue
+
+
+		record['deaths_per_cap'] = record['deaths'] / record['popData2019']
+		record['cases_per_cap'] = record['cases'] / record['popData2019']
+}
+
 def get_max_values(covid_19_records):
 	# Generate lists of all deaths and cases:
 	deaths = [record['deaths'] for record in covid_19_records]
