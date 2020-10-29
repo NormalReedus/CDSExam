@@ -7,12 +7,11 @@
     fluid
   >
     <v-row>
-      <v-col cols="3" class="pl-6">
-        <Options @updateMap="callUpdateMap" />
-        <v-spacer></v-spacer>
+      <v-col cols="3" class="pl-6 d-flex flex-column justify-space-between">
+        <Settings @updateMap="callUpdateMap" />
         <TimelineOptions />
       </v-col>
-      <v-col cols="9">
+      <v-col cols="9 pr-6">
         <World class="map" ref="world" />
         <Timeline class="timeline" />
       </v-col>

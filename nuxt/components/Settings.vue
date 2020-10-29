@@ -1,9 +1,6 @@
 <template>
-  <!-- <v-container> -->
-  <!-- <v-row> -->
-  <!-- <v-col> -->
   <v-card elevation="4">
-    <v-card-title class="justify-center">Options</v-card-title>
+    <v-card-title class="justify-center">Settings</v-card-title>
 
     <v-divider class="mx-16"></v-divider>
 
@@ -38,9 +35,6 @@
       </v-radio-group>
     </v-card-text>
   </v-card>
-  <!-- </v-col> -->
-  <!-- </v-row> -->
-  <!-- </v-container> -->
 </template>
 
 <script>

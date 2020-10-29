@@ -1,5 +1,5 @@
 <template>
-  <div class="date-slider-container">
+  <div class="date-slider-container my-4">
     <h6 class="date-slider__date">{{ covidRecords[0].date }}</h6>
     <v-slider
       class="mb-n5"

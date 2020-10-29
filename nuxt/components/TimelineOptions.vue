@@ -5,13 +5,13 @@
     <v-card-text>
       <v-radio-group
         dense
-        class="timeline-options__radios"
+        class="timeline-options__radios d-flex"
         v-model="timelineSpeedModifier"
         row
       >
-        <v-radio label="Off" :value="0" color="red" class="mr-2"></v-radio>
-        <v-radio label="Slow" :value="1" color="red" class="mr-2"></v-radio>
-        <v-radio label="Fast" :value="2" color="red" class="mr-2"></v-radio>
+        <v-radio label="Off" :value="0" color="red" class="mx-auto"></v-radio>
+        <v-radio label="Slow" :value="1" color="red" class="mx-auto"></v-radio>
+        <v-radio label="Fast" :value="2" color="red" class="mx-auto"></v-radio>
       </v-radio-group>
     </v-card-text>
   </v-card>
