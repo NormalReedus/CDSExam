@@ -23,5 +23,5 @@ echo 'Step 8: Getting the toolbox...'
 cd nuxt && npm i
 
 echo 'Step 9: Running the visualizer...'
-npm run generate && npm run start
+npm run build && npm run start
 

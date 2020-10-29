@@ -4,8 +4,7 @@ export default {
     timelineBaseSpeed: 1000, // ms
   },
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  ssr: true,
-  target: 'static',
+  ssr: false,
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
