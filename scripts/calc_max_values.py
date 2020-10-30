@@ -12,11 +12,12 @@ def get_max_values(covid_19_records):
 	deaths = [record['deaths'] for record in covid_19_records]
 	cases = [record['cases'] for record in covid_19_records]
 
-	# Generate lists of deaths and cases per capita (ignoring cases that were not in a geographic area):
-	deaths_per_cap = [(record['deaths'] / record['popData2019']) for record in covid_19_records if record['popData2019'] != None]
-	cases_per_cap = [(record['cases'] / record['popData2019']) for record in covid_19_records if record['popData2019'] != None]
+	# Generate lists of deaths and cases per capita, or 0, if the key does not exist
+	# We are only using the list to generate max vals, so 0 is a fine null value:
+	deaths_per_cap = [record.get('deaths_per_cap', 0) for record in covid_19_records]
+	cases_per_cap = [record.get('cases_per_cap', 0) for record in covid_19_records]
 
-	return { "max_deaths": max(deaths), "max_cases": max(cases), "max_cases_per_cap": max(cases_per_cap), "max_deaths_per_cap": max(deaths_per_cap) }
+	return { "deaths": max(deaths), "cases": max(cases), "cases_per_cap": max(cases_per_cap), "deaths_per_cap": max(deaths_per_cap) }
 
 # Data has not yet been transformed, since it is easier to loop through before nesting data with dates:
 with open('../data/temp/covid_19_vals_per_cap.json') as input_file:
