@@ -4,10 +4,10 @@ import data from '@/data/covid_19_output.json'
 export const state = () => ({
   loading: true,
   covidMaxVals: {
-    deaths: data.max_deaths,
-    cases: data.max_cases,
-    deathsPerCap: data.max_deaths_per_cap,
-    casesPerCap: data.max_cases_per_cap,
+    deaths: data.max_vals.deaths,
+    cases: data.max_vals.cases,
+    deathsPerCap: data.max_vals.deaths_per_cap,
+    casesPerCap: data.max_vals.cases_per_cap,
   },
   covidRecords: data.records,
   currentDataIndex: 0,
