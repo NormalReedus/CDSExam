@@ -7,7 +7,7 @@ print('Step 3: Calculating max covid-19 cases and deaths...')
 this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
 
-def get_max_values(covid_19_records):
+def get_max_vals(covid_19_records):
 	# Generate lists of all deaths and cases:
 	deaths = [record['deaths'] for record in covid_19_records]
 	cases = [record['cases'] for record in covid_19_records]
@@ -23,7 +23,7 @@ def get_max_values(covid_19_records):
 with open('../data/temp/covid_19_vals_per_cap.json') as input_file:
 	covid_19_records = json.loads(input_file.read())['records']
 
-	max_vals = get_max_values(covid_19_records)
+	max_vals = get_max_vals(covid_19_records)
 
 	with open('../data/temp/covid_19_max_vals.json', 'w') as output_file:
 		json.dump(max_vals, output_file)
