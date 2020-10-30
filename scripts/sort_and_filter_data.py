@@ -41,7 +41,6 @@ with open(max_value_path) as max_values, open(covid_19_path) as covid_19_data:
             del data_point['day']
             del data_point['month']
             del data_point['year']
-            del data_point['countriesAndTerritories']
             del data_point['popData2019']
             del data_point['continentExp']
             del data_point['Cumulative_number_for_14_days_of_COVID-19_cases_per_100000']
