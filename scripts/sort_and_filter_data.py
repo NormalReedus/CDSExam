@@ -27,11 +27,24 @@ def compare_function(e):
 # Filtering might be added later
 with open(max_value_path) as max_values, open(covid_19_path) as covid_19_data:
     covid_19_dict = json.loads(covid_19_data.read())
-    output_dict = json.loads(max_values.read())
+    max_values_dict = json.loads(max_values.read())
 
     covid_19_dict["records"].sort(key=compare_function)
 
+    output_dict = {}
+    output_dict['max_vals'] = max_values_dict
     output_dict['records'] = covid_19_dict["records"]
+
+    for entry in output_dict['records']:
+        for data_point in entry['data']:
+            del data_point['dateRep']
+            del data_point['day']
+            del data_point['month']
+            del data_point['year']
+            del data_point['countriesAndTerritories']
+            del data_point['popData2019']
+            del data_point['continentExp']
+            del data_point['Cumulative_number_for_14_days_of_COVID-19_cases_per_100000']
 
     with open("../data/output/covid_19_output.json", "w") as output_file:
         output_file.write(json.dumps(output_dict))
