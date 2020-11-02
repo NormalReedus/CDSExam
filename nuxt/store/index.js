@@ -6,14 +6,14 @@ export const state = () => ({
   covidMaxVals: {
     deaths: data.max_vals.deaths,
     cases: data.max_vals.cases,
-    deathsPerCap: data.max_vals.deaths_per_cap,
-    casesPerCap: data.max_vals.cases_per_cap,
+    deaths_per_cap: data.max_vals.deaths_per_cap,
+    cases_per_cap: data.max_vals.cases_per_cap,
   },
   covidRecords: data.records,
   currentDataIndex: 0,
   geoSvgs: {}, // geoId props pointing to the svg dom element
   transitions: true,
-  covidVariable: 'cases', // 'deaths', 'deathsPerCap', 'casesPerCap'
+  covidVariable: 'cases', // 'deaths', 'deaths_per_cap', 'cases_per_cap'
 })
 
 export const mutations = {

@@ -23,15 +23,13 @@
         <v-radio label="Deaths" value="deaths" color="red"></v-radio>
         <v-radio
           label="Cases per cap."
-          value="casesPerCap"
+          value="cases_per_cap"
           color="red"
-          disabled
         ></v-radio>
         <v-radio
           label="Deaths per cap."
-          value="deathsPerCap"
+          value="deaths_per_cap"
           color="red"
-          disabled
         ></v-radio>
       </v-radio-group>
     </v-card-text>

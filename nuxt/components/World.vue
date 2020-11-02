@@ -55,11 +55,12 @@ export default {
 
     mapColorIntensity(val, maxVal) {
       const intensity = val / maxVal
-      const hue = 90 - intensity * 90
-      const saturation = 70 + intensity * 30
+      // const hue = 90 - intensity * 90
+      const hue = 0;
+      const saturation = 100
       // const saturation = 80
       // const lightness = 15 + intensity * 70
-      const lightness = 30
+      const lightness = 0 + intensity * 100
 
       return `hsl(${hue}, ${saturation}%, ${lightness}%)`
     },
