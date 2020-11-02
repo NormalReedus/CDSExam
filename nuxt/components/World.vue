@@ -32,11 +32,15 @@ export default {
 
   methods: {
     updateMap() {
+      const noDataAreas = Object.assign({}, this.geoSvgs)
+
       for (const record of this.currentCovidData.data) {
         const element = this.geoSvgs[record.geoId]
         const covidVariable = this.$store.state.covidVariable
 
         if (!element) continue
+
+        delete noDataAreas[record.geoId]
 
         // Set colour intensity:
         element.style.fill = this.mapColorIntensity(
@@ -51,16 +55,20 @@ export default {
         )
         element.firstChild.textContent = titleText
       }
+
+      for (const element of Object.values(noDataAreas)) {
+        element.style.fill = '#A1A1B5'
+      }
     },
 
     mapColorIntensity(val, maxVal) {
       const intensity = val / maxVal
-      // const hue = 90 - intensity * 90
-      const hue = 0;
-      const saturation = 100
+      const hue = this.$store.state.colorblind ? 0 : 90 - intensity * 90
+      // const hue = 0
+      const saturation = 30 + intensity * 60
       // const saturation = 80
       // const lightness = 15 + intensity * 70
-      const lightness = 0 + intensity * 100
+      const lightness = 20 + intensity * 20
 
       return `hsl(${hue}, ${saturation}%, ${lightness}%)`
     },
