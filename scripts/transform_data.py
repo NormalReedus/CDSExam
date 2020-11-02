@@ -57,9 +57,6 @@ with open("../data/temp/covid_19_vals_per_cap.json") as input_file:
 
     covid_19_dict['records'] = data_correct_form
 
-    # The new data list is transformed into json format.
-    data_correct_form_json = json.dumps(covid_19_dict)
-
     # The end folder is located and the file inside is updated with the new information.
     with open('../data/temp/covid_19_transformed.json', 'w') as output_file:
-        output_file.write(data_correct_form_json)
+        json.dump(covid_19_dict, output_file, indent=2)

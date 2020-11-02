@@ -14,7 +14,6 @@ python scripts/calc_vals_per_cap.py
 python scripts/calc_max_values.py
 python scripts/transform_data.py
 python scripts/sort_and_filter_data.py
-node scripts/prettifyJson.js 'data/output/covid_19_output.json'
 
 echo 'Step 7: Transferring data to the visualizer...'
 cp data/output/covid_19_output.json nuxt/data/covid_19_output.json
