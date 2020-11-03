@@ -1,19 +1,13 @@
-// Fuck yes:
 import data from '@/data/covid_19_output.json'
 
 export const state = () => ({
   loading: true,
-  covidMaxVals: {
-    deaths: data.max_vals.deaths,
-    cases: data.max_vals.cases,
-    deaths_per_cap: data.max_vals.deaths_per_cap,
-    cases_per_cap: data.max_vals.cases_per_cap,
-  },
+  covidTertiles: data.tertiles,
   covidRecords: data.records,
   currentDataIndex: 0,
   geoSvgs: {}, // geoId props pointing to the svg dom element
   transitions: true,
-  colorblind: false,
+  // colorblind: false,
   covidVariable: 'cases', // 'deaths', 'deaths_per_cap', 'cases_per_cap'
 })
 
@@ -27,16 +21,15 @@ export const mutations = {
       state.geoSvgs[el.id] = el
     })
   },
-
   setCurrentDataIndex(state, index) {
     state.currentDataIndex = index
   },
   setTransitions(state, val) {
     state.transitions = val
   },
-  setColorblind(state, val){
-    state.colorblind = val
-  },
+  // setColorblind(state, val) {
+  //   state.colorblind = val
+  // },
   setCovidVariable(state, val) {
     state.covidVariable = val
   },

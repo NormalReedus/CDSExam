@@ -4,7 +4,7 @@
 
     <v-divider class="mx-16"></v-divider>
 
-    <v-card-subtitle>Aesthetics</v-card-subtitle>
+    <v-card-subtitle>Aesthetics:</v-card-subtitle>
     <v-card-text>
       <v-switch
         :disabled="loading"
@@ -12,12 +12,12 @@
         label="Animations"
         color="red"
       ></v-switch>
-      <v-switch
+      <!-- <v-switch
         :disabled="loading"
         v-model="colorblind"
         label="Colorblind mode"
         color="red"
-      ></v-switch>
+      ></v-switch> -->
     </v-card-text>
 
     <v-divider class="mx-4" />
@@ -39,7 +39,6 @@
         ></v-radio>
       </v-radio-group>
     </v-card-text>
-
   </v-card>
 </template>
 
@@ -58,15 +57,15 @@ export default {
         this.$store.commit('setTransitions', val)
       },
     },
-    colorblind: {
-      get() {
-        return this.$store.state.colorblind
-      },
-      set(val){
-        this.$store.commit('setColorblind', val)
-        this.$emit('updateMap')
-      }
-    },
+    // colorblind: {
+    //   get() {
+    //     return this.$store.state.colorblind
+    //   },
+    //   set(val) {
+    //     this.$store.commit('setColorblind', val)
+    //     this.$emit('updateMap')
+    //   },
+    // },
     covidVariable: {
       get() {
         return this.$store.state.covidVariable

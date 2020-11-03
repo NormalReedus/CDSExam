@@ -11,16 +11,16 @@ cd "${BASH_SOURCE%/*}"
 # Order is important:
 python scripts/get_raw_data.py
 python scripts/calc_vals_per_cap.py
-python scripts/calc_max_values.py
+python scripts/calc_tertiles.py
 python scripts/transform_data.py
 python scripts/sort_and_filter_data.py
 
-echo 'Step 7: Transferring data to the visualizer...'
+echo 'Step 6: Transferring data to the visualizer...'
 cp data/output/covid_19_output.json nuxt/data/covid_19_output.json
 
-echo 'Step 8: Getting the toolbox...'
+echo 'Step 7: Getting the toolbox...'
 cd nuxt && npm i
 
-echo 'Step 9: Running the visualizer...'
+echo 'Step 8: Running the visualizer...'
 npm run build && npm run start
 
