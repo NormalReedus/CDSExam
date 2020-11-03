@@ -1,7 +1,7 @@
 import json
 import os
 
-print('Step 3: Transforming the data to make it easier to work with...')
+print('Step 4: Transforming the data to make it easier to work with...')
 
 # Change cwd to this file's dir, so we can use a relative path when saving the json:
 this_dir = os.path.dirname(os.path.realpath(__file__))
@@ -32,13 +32,11 @@ def get_unique_dates(covid_19_list):
         
     return used_dates
 
-# The path from which the json is downloaded
-covid_19_data_path = "../data/input/covid_19_records.json"
 
 # The file is opened from the url via the urllib library
-with open(covid_19_data_path) as covid_19_json:
+with open("../data/temp/covid_19_vals_per_cap.json") as input_file:
     # The file contains a list "records" which holds the information
-    covid_19_dict = json.loads(covid_19_json.read())
+    covid_19_dict = json.loads(input_file.read())
 
     # An array for the finished data is created
     data_correct_form = []
@@ -59,11 +57,6 @@ with open(covid_19_data_path) as covid_19_json:
 
     covid_19_dict['records'] = data_correct_form
 
-    # The new data list is transformed into json format.
-    data_correct_form_json = json.dumps(covid_19_dict)
-
     # The end folder is located and the file inside is updated with the new information.
-    with open('../data/temp/covid_19_transformed.json', 'w') as output:
-        output.write(data_correct_form_json)
-
-print('DONE: transform_data.py\n')
+    with open('../data/temp/covid_19_transformed.json', 'w') as output_file:
+        json.dump(covid_19_dict, output_file, indent=2)

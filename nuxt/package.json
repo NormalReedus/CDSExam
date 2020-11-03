@@ -1,9 +1,9 @@
 {
-  "name": "nuxt",
+  "name": "COVID19Heatmap",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --open",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"

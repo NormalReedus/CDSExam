@@ -6,42 +6,45 @@
     ma-0
     fluid
   >
+    <v-progress-circular
+      class="loader"
+      v-if="loading"
+      indeterminate
+      color="red"
+      size="70"
+      width="7"
+    ></v-progress-circular>
+
     <v-row>
-      <v-col cols="2">
-        <v-checkbox
-          v-model="transitions"
-          label="Animations"
-          color="red"
-        ></v-checkbox>
-        <!-- <input
-          type="checkbox"
-          class="transitions-checkbox"
-          value="transitions"
-          v-model="transitions"
-        /> -->
+      <v-col cols="3" class="pl-6 d-flex flex-column justify-space-between">
+        <Settings @updateMap="callUpdateMap" />
+        <TimelineOptions />
       </v-col>
-      <v-col cols="8">
-        <World class="map" />
+      <v-col cols="9 pr-6">
+        <World class="map" ref="world" />
+        <Timeline class="timeline" />
       </v-col>
-      <!-- <v-col cols="2">
-        <div class="test"></div>
-      </v-col> -->
-    </v-row>
-    <v-row>
-      <Timeline class="timeline" />
     </v-row>
   </v-container>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      transitions: true,
-    }
+  computed: {
+    transitions() {
+      return this.$store.state.transitions
+    },
+
+    loading() {
+      return this.$store.state.loading
+    },
   },
 
-  methods: {},
+  methods: {
+    callUpdateMap() {
+      this.$refs.world.updateMap()
+    },
+  },
 
   head() {
     return {
@@ -56,8 +59,10 @@ export default {
   min-height: 100vh;
 }
 
-.test {
-  background: hotpink;
-  height: 100%;
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

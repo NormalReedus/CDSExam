@@ -1,3 +1,8 @@
 {
+<<<<<<< HEAD
 	"python.pythonPath": "D:\\Anaconda3\\python.exe"
+=======
+	"python.pythonPath": "C:\\ProgramData\\Anaconda3\\python.exe",
+	"python.formatting.provider": "yapf"
+>>>>>>> 15a3dcd036d1003cae0965019addc1147fcf970c
 }

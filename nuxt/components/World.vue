@@ -13,6 +13,12 @@
 import { mapState, mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      loading: true,
+    }
+  },
+
   watch: {
     currentCovidData(newData, oldData) {
       this.updateMap(newData)
@@ -26,35 +32,43 @@ export default {
 
   methods: {
     updateMap() {
+      const noDataAreas = Object.assign({}, this.geoSvgs)
+
       for (const record of this.currentCovidData.data) {
         const element = this.geoSvgs[record.geoId]
+        const covidVariable = this.$store.state.covidVariable
 
         if (!element) continue
 
+        delete noDataAreas[record.geoId]
+
         // Set colour intensity:
         element.style.fill = this.mapColorIntensity(
-          record.cases,
-          this.$store.state.covidMaxVals.cases
+          record[covidVariable],
+          this.$store.state.covidMaxVals[covidVariable]
         )
 
         // Underscores to spaces:
-        const titleText = `${record.countriesAndTerritories} - ${record.cases} cases`.replace(
+        const titleText = `${record.countriesAndTerritories} - ${record[covidVariable]} ${covidVariable}`.replace(
           /_/g,
           ' '
         )
         element.firstChild.textContent = titleText
       }
+
+      for (const element of Object.values(noDataAreas)) {
+        element.style.fill = '#A1A1B5'
+      }
     },
 
     mapColorIntensity(val, maxVal) {
       const intensity = val / maxVal
-      const hue = 0
-      const saturation = 50 + intensity * 50
-      const lightness = 5 + intensity * 50
-
-      // const hue = 100 - intensity * 100
-      // const saturation = intensity * 100
-      // const lightness = 50
+      const hue = this.$store.state.colorblind ? 0 : 90 - intensity * 90
+      // const hue = 0
+      const saturation = 30 + intensity * 60
+      // const saturation = 80
+      // const lightness = 15 + intensity * 70
+      const lightness = 20 + intensity * 20
 
       return `hsl(${hue}, ${saturation}%, ${lightness}%)`
     },
@@ -62,18 +76,16 @@ export default {
 
   mounted() {
     this.updateMap()
+    this.$store.commit('stopLoader')
   },
 }
 </script>
 
 <style lang="scss" scoped>
 .map-title {
-  margin-bottom: 2rem;
-
   color: var(--text-color);
 
-  font-family: var(--heading-font);
-  font-weight: var(--heading-weight);
+  // font-weight: var(--heading-weight);
 
   position: absolute;
 }
