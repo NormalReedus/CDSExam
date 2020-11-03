@@ -4,14 +4,20 @@
 
     <v-divider class="mx-16"></v-divider>
 
-    <v-card-subtitle>Disable/enable animations:</v-card-subtitle>
+    <v-card-subtitle>Aesthetics</v-card-subtitle>
     <v-card-text>
-      <v-checkbox
+      <v-switch
         :disabled="loading"
         v-model="transitions"
         label="Animations"
         color="red"
-      ></v-checkbox>
+      ></v-switch>
+      <v-switch
+        :disabled="loading"
+        v-model="colorblind"
+        label="Colorblind mode"
+        color="red"
+      ></v-switch>
     </v-card-text>
 
     <v-divider class="mx-4" />
@@ -33,6 +39,7 @@
         ></v-radio>
       </v-radio-group>
     </v-card-text>
+
   </v-card>
 </template>
 
@@ -50,6 +57,15 @@ export default {
       set(val) {
         this.$store.commit('setTransitions', val)
       },
+    },
+    colorblind: {
+      get() {
+        return this.$store.state.colorblind
+      },
+      set(val){
+        this.$store.commit('setColorblind', val)
+        this.$emit('updateMap')
+      }
     },
     covidVariable: {
       get() {
