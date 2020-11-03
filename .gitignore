@@ -1,7 +1,4 @@
 **/node_modules/
 **/.nuxt/
-<<<<<<< HEAD
 .vscode/
-=======
 **/dist/
->>>>>>> 15a3dcd036d1003cae0965019addc1147fcf970c
