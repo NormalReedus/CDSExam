@@ -30,9 +30,10 @@ export default {
 
       const hue = baseHue + intensity * degreeSpan
 
-      const saturation = 30 + intensity * 60
+      // const saturation = 30 + intensity * 60
+      const saturation = 50 + intensity * 20
 
-      const lightness = 15 + intensity * 30
+      const lightness = 20 + intensity * 30
 
       return `hsl(${hue}, ${saturation}%, ${lightness}%)`
     },

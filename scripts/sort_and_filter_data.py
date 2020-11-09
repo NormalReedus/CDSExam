@@ -12,7 +12,8 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(this_dir)
 
 # Paths to the json files we need
-tertiles_path = "../data/temp/covid_19_tertiles.json"
+# tertiles_path = "../data/temp/covid_19_tertiles.json"
+tertiles_path = "../data/temp/covid_19_max_vals.json"
 covid_19_path = "../data/temp/covid_19_transformed.json"
 
 # The sort function takes a compare function
