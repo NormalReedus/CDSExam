@@ -2,7 +2,7 @@ import data from '@/data/covid_19_output.json'
 
 export const state = () => ({
   loading: true,
-  covidTertiles: data.tertiles,
+  covidMaxVals: data.tertiles,
   covidRecords: data.records,
   currentDataIndex: 0,
   geoSvgs: {}, // geoId props pointing to the svg dom element

@@ -39,8 +39,8 @@ export default {
       }
     },
 
-    tertiles() {
-      return this.$store.state.covidTertiles
+    maxVals() {
+      return this.$store.state.covidMaxVals
     },
 
     covidVariable() {
@@ -60,20 +60,24 @@ export default {
         delete noDataAreas[record.geoId]
 
         // Get the tertile interval for the record value:
-        const tertiles = this.tertiles[this.covidVariable]
+        // const tertiles = this.tertiles[this.covidVariable]
         const recordValue = record[this.covidVariable]
 
-        let tertileName
-        if (recordValue <= tertiles.first) {
-          tertileName = 'first'
-        } else if (recordValue <= tertiles.second) {
-          tertileName = 'second'
-        } else {
-          tertileName = 'max'
-        }
+        // let tertileName
+        // if (recordValue <= tertiles.first) {
+        //   tertileName = 'first'
+        // } else if (recordValue <= tertiles.second) {
+        //   tertileName = 'second'
+        // } else {
+        //   tertileName = 'max'
+        // }
 
         // Set colour intensity:
-        element.style.fill = this.mapColorIntensity(recordValue, tertileName)
+        // element.style.fill = this.mapColorIntensity(recordValue, tertileName)
+        element.style.fill = this.mapColorIntensity(
+          recordValue,
+          this.maxVals[this.covidVariable]
+        )
 
         // Underscores to spaces:
         const titleText = `${record.countriesAndTerritories} - ${
@@ -85,7 +89,7 @@ export default {
       // Reset colors and title of all svgs with no data point:
       for (const element of Object.values(noDataAreas)) {
         // element.style.fill = '#A1A1B5'
-        element.style.fill = 'white'
+        element.style.fill = 'darkslategray'
 
         element.firstChild.textContent = element.firstChild.textContent.split(
           ' - '
