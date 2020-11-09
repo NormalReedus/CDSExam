@@ -38,45 +38,6 @@
         </div>
       </div>
     </v-card-text>
-
-    <!-- <div class="map-legend-category-container">
-          <p class="map-legend__category-label">
-            {{ legendLabels.firstEnd }}
-          </p>
-          <div
-            :style="legendColors.first"
-            class="map-legend__category-colors elevation-4"
-          ></div>
-          <p class="map-legend__category-label">
-            {{ legendLabels.firstStart }}
-          </p>
-        </div>
-
-        <div class="map-legend-category-container">
-          <p class="map-legend__category-label">
-            {{ legendLabels.secondEnd }}
-          </p>
-          <div
-            :style="legendColors.second"
-            class="map-legend__category-colors elevation-4"
-          ></div>
-          <p class="map-legend__category-label">
-            {{ legendLabels.secondStart }}
-          </p>
-        </div>
-
-        <div class="map-legend-category-container">
-          <p class="map-legend__category-label">
-            {{ legendLabels.maxEnd }}
-          </p>
-          <div
-            :style="legendColors.max"
-            class="map-legend__category-colors elevation-4"
-          ></div>
-          <p class="map-legend__category-label">
-            {{ legendLabels.maxStart }}
-          </p>
-        </div> -->
   </v-card>
 </template>
 
@@ -102,9 +63,6 @@ export default {
       return this.$store.state.covidMaxVals
     },
 
-    tertiles() {
-      return this.$store.state.covidTertiles
-    },
     covidVariable() {
       return this.$store.state.covidVariable
     },
@@ -124,69 +82,9 @@ export default {
       } else {
         return Math.round(maxLabel) + '+'
       }
-
-      // const { first, second, max } = this.tertiles[this.covidVariable]
-      // let labels
-
-      // if (
-      //   this.covidVariable === 'cases_per_cap' ||
-      //   this.covidVariable === 'deaths_per_cap'
-      // ) {
-      //   const decimals = this.covidVariable === 'cases_per_cap' ? 4 : 6
-
-      //   labels = {
-      //     firstStart: 0,
-      //     firstEnd: first.toFixed(decimals),
-      //     secondStart: first.toFixed(decimals),
-      //     secondEnd: second.toFixed(decimals),
-      //     maxStart: first.toFixed(decimals),
-      //     maxEnd: max.toFixed(decimals),
-      //   }
-      // } else {
-      //   labels = {
-      //     firstStart: 0,
-      //     firstEnd: Math.round(first),
-      //     secondStart: Math.round(first) + 1,
-      //     secondEnd: Math.round(second),
-      //     maxStart: Math.round(second) + 1,
-      //     maxEnd: Math.round(max),
-      //   }
-      // }
-
-      // return labels
     },
 
     legendColors() {
-      // return {
-      //   first: {
-      //     background: `linear-gradient(0deg, ${this.mapColorIntensity(
-      //       0,
-      //       'first'
-      //     )}, ${this.mapColorIntensity(
-      //       this.tertiles[this.covidVariable].first,
-      //       'first'
-      //     )})`,
-      //   },
-      //   second: {
-      //     background: `linear-gradient(0deg, ${this.mapColorIntensity(
-      //       this.tertiles[this.covidVariable].first,
-      //       'second'
-      //     )}, ${this.mapColorIntensity(
-      //       this.tertiles[this.covidVariable].second,
-      //       'second'
-      //     )})`,
-      //   },
-      //   max: {
-      //     background: `linear-gradient(0deg, ${this.mapColorIntensity(
-      //       this.tertiles[this.covidVariable].second,
-      //       'max'
-      //     )}, ${this.mapColorIntensity(
-      //       this.tertiles[this.covidVariable].max,
-      //       'max'
-      //     )})`,
-      //   },
-      // }
-
       return {
         background: `linear-gradient(to right, ${this.mapColorIntensity(
           0.0000001 /* to not show 0 cases on the legend */,
@@ -217,9 +115,7 @@ export default {
 .map-legend {
   width: 100%;
   height: 100px;
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
+
   &-labels {
     display: flex;
     justify-content: space-between;
@@ -229,26 +125,8 @@ export default {
   &__indicator {
     height: 35%;
     border-radius: 5px;
+    transition: background 250ms ease;
   }
-
-  // &-category-container {
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: column;
-  // }
-
-  // &__category-colors {
-  //   margin: 0 auto;
-  //   height: 100px;
-  //   width: 50%;
-  //   flex-grow: 1;
-  //   border-radius: 5px;
-  // }
-
-  // &__category-label {
-  //   text-align: center;
-  //   margin: 0;
-  // }
 }
 
 .map-categoricals {
@@ -258,14 +136,17 @@ export default {
 
   &__indicator {
     height: 35px;
-    // width: 30%;
     width: 100%;
     background: red;
     border-radius: 5px;
   }
 
   &__no-data {
-    background: darkslategray;
+    background: #5e5e78;
+  }
+
+  &__zero {
+    transition: background 250ms ease;
   }
 }
 

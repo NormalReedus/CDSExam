@@ -12,12 +12,12 @@
         label="Animations"
         color="red"
       ></v-switch>
-      <!-- <v-switch
+      <v-switch
         :disabled="loading"
-        v-model="colorblind"
-        label="Colorblind mode"
+        v-model="altColorMode"
+        label="Alt. color mode"
         color="red"
-      ></v-switch> -->
+      ></v-switch>
     </v-card-text>
 
     <v-divider class="mx-4" />
@@ -57,15 +57,15 @@ export default {
         this.$store.commit('setTransitions', val)
       },
     },
-    // colorblind: {
-    //   get() {
-    //     return this.$store.state.colorblind
-    //   },
-    //   set(val) {
-    //     this.$store.commit('setColorblind', val)
-    //     this.$emit('updateMap')
-    //   },
-    // },
+    altColorMode: {
+      get() {
+        return this.$store.state.altColorMode
+      },
+      set(val) {
+        this.$store.commit('setColorMode', val)
+        this.$emit('updateMap')
+      },
+    },
     covidVariable: {
       get() {
         return this.$store.state.covidVariable

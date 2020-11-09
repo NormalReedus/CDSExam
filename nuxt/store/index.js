@@ -7,7 +7,7 @@ export const state = () => ({
   currentDataIndex: 0,
   geoSvgs: {}, // geoId props pointing to the svg dom element
   transitions: true,
-  // colorblind: false,
+  altColorMode: false,
   covidVariable: 'cases', // 'deaths', 'deaths_per_cap', 'cases_per_cap'
 })
 
@@ -27,9 +27,9 @@ export const mutations = {
   setTransitions(state, val) {
     state.transitions = val
   },
-  // setColorblind(state, val) {
-  //   state.colorblind = val
-  // },
+  setColorMode(state, val) {
+    state.altColorMode = val
+  },
   setCovidVariable(state, val) {
     state.covidVariable = val
   },
