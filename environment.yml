@@ -2,4 +2,5 @@ name: CDSExam
 channels:
   - defaults
 dependencies:
-  - python=3.7
+  - python=3.8
+prefix: C:\Users\magnu\.conda\envs\CDSExam
