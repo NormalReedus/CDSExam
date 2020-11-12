@@ -21,7 +21,7 @@
 
     <v-divider class="mx-4" />
 
-    <v-card-text>
+    <v-card-text class="d-flex justify-space-between">
       <div class="map-categoricals">
         <div class="map-categorical-container text-center">
           No data
@@ -36,7 +36,14 @@
             :style="zeroColor"
           ></div>
         </div>
+        
       </div>
+      <div class="map-categorical-container max-button-container text-center">
+          Go to max
+          <div
+            class="max-button elevation-4"
+          ></div>
+        </div>
     </v-card-text>
   </v-card>
 </template>
@@ -131,8 +138,9 @@ export default {
 
 .map-categoricals {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+  flex-grow: 2;
 
   &__indicator {
     height: 35px;
@@ -157,4 +165,26 @@ export default {
 .v-card__text:not(:last-of-type) {
   padding-bottom: 0;
 }
+
+.max-button-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.max-button{
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(farthest-side at 30% 30%, rgb(255, 196, 196), red);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 200ms ease;
+
+  &:hover{
+    transform: scale(1.1);
+  }
+}
+
 </style>
