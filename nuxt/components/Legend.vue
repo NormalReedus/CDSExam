@@ -41,6 +41,7 @@
       <div class="map-categorical-container max-button-container text-center">
           Go to max
           <div
+          @click="maxIndex"
             class="max-button elevation-4"
           ></div>
         </div>
@@ -50,6 +51,8 @@
 
 <script>
 import mapColorIntensity from '@/mixins/mapColorIntensity.js'
+import { mapMutations } from 'vuex'
+
 
 export default {
   mixins: [mapColorIntensity],
@@ -72,6 +75,10 @@ export default {
 
     covidVariable() {
       return this.$store.state.covidVariable
+    },
+
+    covidRecords(){
+      return this.$store.state.covidRecords
     },
 
     zeroColor() {
@@ -115,6 +122,38 @@ export default {
       }
     },
   },
+  methods: {
+    ...mapMutations(['setCurrentDataIndex']),
+
+    maxIndex(){
+      const records = this.covidRecords;
+
+      let maxInfo = {
+        covidVariable: this.covidVariable,
+        country: "",
+        max: 0,
+        date: "",
+        index: 0
+      }
+
+      for(let i = 0; i < records.length; i++){
+        const data = records[i].data;
+        const date = records[i].date;
+
+        for(let j = 0; j < data.length; j++){
+          const prop = data[j][this.covidVariable];
+          if(prop > maxInfo.max){
+            maxInfo.max = prop;
+            maxInfo.date = date;
+            maxInfo.index = i;
+            maxInfo.country = data[j].countriesAndTerritories
+          }
+        }
+      }
+      console.table(maxInfo);
+      this.setCurrentDataIndex(maxInfo.index)
+    }
+  }
 }
 </script>
 
