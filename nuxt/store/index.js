@@ -1,4 +1,4 @@
-import data from '@/data/covid_19_output.json'
+import data from '@/data/covid_19_data.json'
 
 export const state = () => ({
   loading: true,
