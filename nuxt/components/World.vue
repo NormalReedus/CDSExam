@@ -75,7 +75,6 @@ export default {
 
       // Reset colors and title of all svgs with no data point:
       for (const element of Object.values(noDataAreas)) {
-        // element.style.fill = '#A1A1B5'
         element.style.fill = '#5e5e78'
 
         element.firstChild.textContent = element.firstChild.textContent.split(

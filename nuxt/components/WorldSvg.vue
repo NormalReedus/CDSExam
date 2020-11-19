@@ -16,13 +16,7 @@ export default {
   filter: drop-shadow(0 0 1rem black);
 
   path {
-    // fill-opacity: 0.85;
     transition: all 250ms ease;
-
-    // &:hover {
-    //   fill-opacity: 1;
-    //   transform: translateY(-0.3%);
-    // }
   }
 }
 </style>

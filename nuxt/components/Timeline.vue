@@ -63,11 +63,9 @@ export default {
     align-items: center;
 
     width: 100%;
-    // padding: 0 2rem;
   }
 
   &__date {
-    // font-weight: 500;
     transform: rotate(35deg);
   }
 }

@@ -13,7 +13,7 @@ echo -e 'Fetching data, processing data, installing dependencies, and running th
 cd "${BASH_SOURCE%/*}"
 
 # Runs all of the data processing:
-jupyter nbconvert --to notebook --inplace --execute scripts/main.ipynb
+jupyter nbconvert --to notebook --inplace --execute scripts/data_processing.ipynb
 
 # Copies the output of data processing into the visualizer's directory:
 cp data/output/covid_19_final.json nuxt/data/covid_19_data.json

@@ -5,13 +5,7 @@
 </template>
 
 <script>
-export default {
-  // computed: {
-  //   theme() {
-  //     return this.$vuetify.theme.dark ? 'dark' : 'light'
-  //   },
-  // },
-}
+export default {}
 </script>
 
 <style>
