@@ -1,4 +1,5 @@
 import data from '@/data/covid_19_data.json'
+import { NULL } from 'node-sass'
 
 export const state = () => ({
   loading: true,
@@ -8,7 +9,10 @@ export const state = () => ({
   geoSvgs: {}, // geoId props pointing to the svg dom element
   transitions: true,
   altColorMode: false,
-  covidVariable: 'cases', // 'deaths', 'deaths_per_cap', 'cases_per_cap'
+  covidVariable: 'cases', // 'deaths', 'deaths_per_cap', 'cases_per_cap',
+  maxInfo: {
+    
+  }
 })
 
 export const mutations = {
