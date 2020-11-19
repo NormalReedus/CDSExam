@@ -146,6 +146,7 @@ export default {
             maxInfo.max = prop;
             maxInfo.date = date;
             maxInfo.index = i;
+            maxInfo.geoId = data[j].geoId
             maxInfo.country = data[j].countriesAndTerritories
           }
         }
