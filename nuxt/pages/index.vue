@@ -52,6 +52,9 @@ export default {
       title: 'COVID-19 Heatmap',
     }
   },
+  mounted(){
+    this.$store.commit('dataTrimmer')
+  }
 }
 </script>
 
