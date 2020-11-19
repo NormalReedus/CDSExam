@@ -24,7 +24,11 @@
 
     <v-card-subtitle>Choose a variable to display:</v-card-subtitle>
     <v-card-text>
-      <v-radio-group v-model="covidVariable" :disabled="loading">
+      <v-radio-group
+        v-model="covidVariable"
+        @change="hideMaxInfo"
+        :disabled="loading"
+      >
         <v-radio label="Cases" value="cases" color="red"></v-radio>
         <v-radio label="Deaths" value="deaths" color="red"></v-radio>
         <v-radio
@@ -43,6 +47,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   computed: {
     loading() {
@@ -75,6 +81,10 @@ export default {
         this.$emit('updateMap')
       },
     },
+  },
+
+  methods: {
+    ...mapMutations(['hideMaxInfo']),
   },
 }
 </script>
