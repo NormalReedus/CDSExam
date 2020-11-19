@@ -15,10 +15,10 @@ cd "${BASH_SOURCE%/*}"
 jupyter nbconvert --to notebook --inplace --execute scripts/main.ipynb
 
 echo 'Step 6: Transferring data to the visualizer...'
-cp data/output/covid_19_output.json nuxt/data/covid_19_output.json
+cp data/output/covid_19_final.json nuxt/data/covid_19_data.json
 
 # echo 'Step 7: Getting the toolbox...'
 cd nuxt && npm i
 
 # echo 'Step 8: Running the visualizer...'
-npm run dev &
+npm run dev
