@@ -9,6 +9,11 @@ export const state = () => ({
   transitions: true,
   altColorMode: false,
   covidVariable: 'cases', // 'deaths', 'deaths_per_cap', 'cases_per_cap'
+  maxInfo: {
+    country: null,
+    max: null,
+  },
+  showMaxInfo: false,
 })
 
 export const mutations = {
@@ -23,6 +28,15 @@ export const mutations = {
   },
   setCurrentDataIndex(state, index) {
     state.currentDataIndex = index
+  },
+  setMaxInfo(state, { country, max }) {
+    state.maxInfo = { country, max }
+  },
+  hideMaxInfo(state) {
+    state.showMaxInfo = false
+  },
+  showMaxInfo(state) {
+    state.showMaxInfo = true
   },
   setTransitions(state, val) {
     state.transitions = val

@@ -8,7 +8,7 @@
       :max="covidRecords.length - 1"
       :value="currentDataIndex"
       :title="currentCovidData.date"
-      @change="currentDataIndex = $event"
+      @change="onSlide"
       color="red"
       thumb-label
       thumb-size="0"
@@ -47,7 +47,11 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['setCurrentDataIndex']),
+    ...mapMutations(['setCurrentDataIndex', 'hideMaxInfo']),
+    onSlide(event) {
+      this.currentDataIndex = event
+      this.hideMaxInfo()
+    },
   },
 }
 </script>

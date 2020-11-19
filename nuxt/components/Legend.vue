@@ -36,15 +36,11 @@
             :style="zeroColor"
           ></div>
         </div>
-        
       </div>
       <div class="map-categorical-container max-button-container text-center">
-          Go to max
-          <div
-          @click="maxIndex"
-            class="max-button elevation-4"
-          ></div>
-        </div>
+        Go to max
+        <div @click="maxIndex" class="max-button elevation-4"></div>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -52,7 +48,6 @@
 <script>
 import mapColorIntensity from '@/mixins/mapColorIntensity.js'
 import { mapMutations } from 'vuex'
-
 
 export default {
   mixins: [mapColorIntensity],
@@ -77,7 +72,7 @@ export default {
       return this.$store.state.covidVariable
     },
 
-    covidRecords(){
+    covidRecords() {
       return this.$store.state.covidRecords
     },
 
@@ -123,37 +118,40 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['setCurrentDataIndex']),
+    ...mapMutations(['setCurrentDataIndex', 'setMaxInfo', 'showMaxInfo']),
 
-    maxIndex(){
-      const records = this.covidRecords;
+    maxIndex() {
+      const records = this.covidRecords
 
-      let maxInfo = {
+      const maxInfo = {
         covidVariable: this.covidVariable,
-        country: "",
+        country: '',
         max: 0,
-        date: "",
-        index: 0
+        date: '',
+        index: 0,
       }
 
-      for(let i = 0; i < records.length; i++){
-        const data = records[i].data;
-        const date = records[i].date;
+      for (let i = 0; i < records.length; i++) {
+        const data = records[i].data
+        const date = records[i].date
 
-        for(let j = 0; j < data.length; j++){
-          const prop = data[j][this.covidVariable];
-          if(prop > maxInfo.max){
-            maxInfo.max = prop;
-            maxInfo.date = date;
-            maxInfo.index = i;
-            maxInfo.country = data[j].countriesAndTerritories
+        for (let j = 0; j < data.length; j++) {
+          const prop = data[j][this.covidVariable]
+          if (prop > maxInfo.max) {
+            maxInfo.max = prop
+            maxInfo.date = date
+            maxInfo.index = i
+            maxInfo.geoId = data[j].geoId
+            maxInfo.country = data[j].countriesAndTerritories.replace(/_/g, ' ')
           }
         }
       }
-      console.table(maxInfo);
+      console.table(maxInfo)
       this.setCurrentDataIndex(maxInfo.index)
-    }
-  }
+      this.setMaxInfo(maxInfo)
+      this.showMaxInfo()
+    },
+  },
 }
 </script>
 
@@ -205,7 +203,7 @@ export default {
   padding-bottom: 0;
 }
 
-.max-button-container{
+.max-button-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -213,17 +211,20 @@ export default {
   flex-grow: 1;
 }
 
-.max-button{
+.max-button {
   width: 40px;
   height: 40px;
-  background: radial-gradient(farthest-side at 30% 30%, rgb(255, 196, 196), red);
+  background: radial-gradient(
+    farthest-side at 30% 30%,
+    rgb(255, 196, 196),
+    red
+  );
   border-radius: 50%;
   cursor: pointer;
   transition: transform 200ms ease;
 
-  &:hover{
+  &:hover {
     transform: scale(1.1);
   }
 }
-
 </style>

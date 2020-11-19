@@ -15,6 +15,8 @@
       width="7"
     ></v-progress-circular>
 
+    <MaxInfo />
+
     <v-row>
       <v-col cols="3" class="pl-6 d-flex flex-column justify-space-between">
         <Legend />
@@ -30,7 +32,9 @@
 </template>
 
 <script>
+import MaxInfo from '../components/MaxInfo.vue'
 export default {
+  components: { MaxInfo },
   computed: {
     transitions() {
       return this.$store.state.transitions
