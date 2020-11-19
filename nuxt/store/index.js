@@ -33,13 +33,16 @@ export const mutations = {
   setCovidVariable(state, val) {
     state.covidVariable = val
   },
-  dataTrimmer(state){
+  dataTrimmer(state) {
     const covidRecords = state.covidRecords
-    const geoIds = Object.keys(state.geoSvgs)
-    for(const record of covidRecords){
-      record.data = record.data.filter(e => geoIds.includes(e.geoId))
+    // const geoIds = Object.keys(state.geoSvgs)
+    for (const record of covidRecords) {
+      for (const countryData of record.data) {
+        if (!state.geoSvgs[countryData.geoId]) console.log(countryData.geoId)
+      }
+      // record.data = record.data.filter(e => geoIds.includes(e.geoId))
     }
-  }
+  },
 }
 
 export const getters = {
