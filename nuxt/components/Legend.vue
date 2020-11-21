@@ -47,11 +47,13 @@
 
 <script>
 import mapColorIntensity from '@/mixins/mapColorIntensity.js'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   mixins: [mapColorIntensity],
   computed: {
+    ...mapGetters(['currentCovidData']),
+
     legendTitle() {
       if (this.covidVariable === 'cases') {
         return 'Cases'
@@ -64,8 +66,11 @@ export default {
       }
     },
 
-    maxVals() {
-      return this.$store.state.covidMaxVals
+    maxVal() {
+      return this.$store.state.covidMaxVals[this.covidVariable]
+    },
+    localMaxVal() {
+      return this.currentCovidData.max_vals[this.covidVariable]
     },
 
     covidVariable() {
@@ -81,7 +86,13 @@ export default {
     },
 
     legendLabel() {
-      const maxLabel = this.maxVals[this.covidVariable]
+      let maxLabel
+      if (this.$store.state.perDate) {
+        maxLabel = this.localMaxVal
+      } else {
+        maxLabel = this.maxVal
+      }
+
       if (
         this.covidVariable === 'cases_per_cap' ||
         this.covidVariable === 'deaths_per_cap'

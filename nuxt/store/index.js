@@ -9,6 +9,7 @@ export const state = () => ({
   transitions: true,
   altColorMode: false,
   covidVariable: 'cases', // 'deaths', 'deaths_per_cap', 'cases_per_cap'
+  perDate: false,
   maxInfo: {
     country: null,
     max: null,
