@@ -21,8 +21,15 @@
     </v-card-text>
 
     <v-divider class="mx-4" />
+    <v-card-subtitle>Legend limits:</v-card-subtitle>
+    <v-card-text>
+      <v-radio-group v-model="perDate" :disabled="loading">
+        <v-radio label="Single date" :value="true" color="red"></v-radio>
+        <v-radio label="All time" :value="false" color="red"></v-radio>
+      </v-radio-group>
+    </v-card-text>
 
-    <v-card-subtitle>Choose a variable to display:</v-card-subtitle>
+    <v-card-subtitle>Variable to display:</v-card-subtitle>
     <v-card-text>
       <v-radio-group
         v-model="covidVariable"
@@ -32,13 +39,13 @@
         <v-radio label="Cases" value="cases" color="red"></v-radio>
         <v-radio label="Deaths" value="deaths" color="red"></v-radio>
         <v-radio
-          label="Cases per cap."
-          value="cases_per_cap"
+          label="Cases per 10k."
+          value="cases_per_10k"
           color="red"
         ></v-radio>
         <v-radio
-          label="Deaths per cap."
-          value="deaths_per_cap"
+          label="Deaths per 10k."
+          value="deaths_per_10k"
           color="red"
         ></v-radio>
       </v-radio-group>
@@ -53,6 +60,16 @@ export default {
   computed: {
     loading() {
       return this.$store.state.loading
+    },
+
+    perDate: {
+      get() {
+        return this.$store.state.perDate
+      },
+      set(val) {
+        this.$store.commit('setPerDate', val)
+        this.$emit('updateMap')
+      },
     },
 
     transitions: {

@@ -1,8 +1,6 @@
 <template>
   <v-card elevation="4">
-    <v-card-title class="justify-center"
-      >Legend - {{ legendTitle }}</v-card-title
-    >
+    <v-card-title class="justify-center">{{ legendTitle }}</v-card-title>
     <v-divider class="mx-16"></v-divider>
     <v-card-text>
       <div class="map-legend">
@@ -52,26 +50,36 @@ import { mapMutations, mapGetters } from 'vuex'
 export default {
   mixins: [mapColorIntensity],
   computed: {
-    ...mapGetters(['currentCovidData']),
+    ...mapGetters(['currentCovidData', 'maxVal']),
 
     legendTitle() {
+      let variable
       if (this.covidVariable === 'cases') {
-        return 'Cases'
+        variable = 'Cases'
       } else if (this.covidVariable === 'deaths') {
-        return 'Deaths'
-      } else if (this.covidVariable === 'cases_per_cap') {
-        return 'Cases per capita'
+        variable = 'Deaths'
+      } else if (this.covidVariable === 'cases_per_10k') {
+        variable = 'Cases per 10k'
       } else {
-        return 'Deaths per capita'
+        variable = 'Deaths per 10k'
       }
+
+      let limits
+      if (this.$store.state.perDate) {
+        limits = 'Single date'
+      } else {
+        limits = 'All time'
+      }
+
+      return variable + ' - ' + limits
     },
 
-    maxVal() {
-      return this.$store.state.covidMaxVals[this.covidVariable]
-    },
-    localMaxVal() {
-      return this.currentCovidData.max_vals[this.covidVariable]
-    },
+    // maxVal() {
+    //   return this.$store.state.covidMaxVals[this.covidVariable]
+    // },
+    // localMaxVal() {
+    //   return this.currentCovidData.max_vals[this.covidVariable]
+    // },
 
     covidVariable() {
       return this.$store.state.covidVariable
@@ -85,29 +93,34 @@ export default {
       return `background: ${this.mapColorIntensity(0, 1)}`
     },
 
+    perDate() {
+      return this.$store.state.perDate
+    },
+
     legendLabel() {
-      let maxLabel
-      if (this.$store.state.perDate) {
-        maxLabel = this.localMaxVal
-      } else {
-        maxLabel = this.maxVal
-      }
+      const maxLabel = this.maxVal
+      // if (this.$store.state.perDate) {
+      //   maxLabel = this.localMaxVal
+      // } else {
+      //   maxLabel = this.maxVal
+      // }
+      const andAbove = this.perDate ? '' : '+'
 
       if (
-        this.covidVariable === 'cases_per_cap' ||
-        this.covidVariable === 'deaths_per_cap'
+        this.covidVariable === 'cases_per_10k' ||
+        this.covidVariable === 'deaths_per_10k'
       ) {
-        const decimals = this.covidVariable === 'cases_per_cap' ? 4 : 6
-        return maxLabel.toFixed(decimals) + '+'
+        const decimals = this.covidVariable === 'cases_per_10k' ? 2 : 3
+        return maxLabel.toFixed(decimals) + andAbove
       } else {
-        return Math.round(maxLabel) + '+'
+        return Math.round(maxLabel) + andAbove
       }
     },
 
     legendColors() {
       return {
         background: `linear-gradient(to right, ${this.mapColorIntensity(
-          0.0000001 /* to not show 0 cases on the legend */,
+          0.0000001 /* to not show 0 cases in the legend */,
           1
         )}, ${this.mapColorIntensity(0.1, 1)}, ${this.mapColorIntensity(
           0.2,

@@ -8,7 +8,7 @@ export const state = () => ({
   geoSvgs: {}, // geoId props pointing to the svg dom element
   transitions: true,
   altColorMode: false,
-  covidVariable: 'cases', // 'deaths', 'deaths_per_cap', 'cases_per_cap'
+  covidVariable: 'cases', // 'deaths', 'deaths_per_10k', 'cases_per_10k'
   perDate: false,
   maxInfo: {
     country: null,
@@ -48,10 +48,22 @@ export const mutations = {
   setCovidVariable(state, val) {
     state.covidVariable = val
   },
+  setPerDate(state, val) {
+    state.perDate = val
+  },
 }
 
 export const getters = {
   currentCovidData(state) {
     return state.covidRecords[state.currentDataIndex]
+  },
+
+  // Returns global or local max val depending og perDate and selected variable:
+  maxVal(state, getters) {
+    if (state.perDate) {
+      return getters.currentCovidData.max_vals[state.covidVariable]
+    }
+
+    return state.covidMaxVals[state.covidVariable]
   },
 }

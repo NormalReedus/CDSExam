@@ -1,6 +1,6 @@
 <template>
   <div class="map-container">
-    <h2 class="map-title" :key="currentCovidData.date">
+    <h2 class="map-title">
       {{ currentCovidData.date }}
     </h2>
     <WorldSvg />
@@ -27,20 +27,16 @@ export default {
 
   computed: {
     ...mapState(['geoSvgs']),
-    ...mapGetters(['currentCovidData']),
+    ...mapGetters(['currentCovidData', 'maxVal']),
 
     prettyVariable() {
-      if (this.covidVariable === 'cases_per_cap') {
-        return 'cases per capita.'
-      } else if (this.covidVariable === 'deaths_per_cap') {
-        return 'deaths per capita.'
+      if (this.covidVariable === 'cases_per_10k') {
+        return 'cases per 10k.'
+      } else if (this.covidVariable === 'deaths_per_10k') {
+        return 'deaths per 10k.'
       } else {
         return this.covidVariable + '.'
       }
-    },
-
-    maxVals() {
-      return this.$store.state.covidMaxVals
     },
 
     covidVariable() {
@@ -61,10 +57,7 @@ export default {
 
         const recordValue = record[this.covidVariable]
 
-        element.style.fill = this.mapColorIntensity(
-          recordValue,
-          this.maxVals[this.covidVariable]
-        )
+        element.style.fill = this.mapColorIntensity(recordValue, this.maxVal)
 
         // Underscores to spaces:
         const titleText = `${record.countriesAndTerritories} - ${
