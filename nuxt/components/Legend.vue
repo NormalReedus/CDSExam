@@ -99,11 +99,7 @@ export default {
 
     legendLabel() {
       const maxLabel = this.maxVal
-      // if (this.$store.state.perDate) {
-      //   maxLabel = this.localMaxVal
-      // } else {
-      //   maxLabel = this.maxVal
-      // }
+    
       const andAbove = this.perDate ? '' : '+'
 
       if (
