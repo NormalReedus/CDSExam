@@ -2,13 +2,13 @@ import data from '@/data/covid_19_data.json'
 
 export const state = () => ({
   loading: true,
-  covidMaxVals: data.max_vals,
+  covidMaxVals: data.maxVals,
   covidRecords: data.records,
   currentDataIndex: 0,
   geoSvgs: {}, // geoId props pointing to the svg dom element
   transitions: true,
   altColorMode: false,
-  covidVariable: 'cases', // 'deaths', 'deaths_per_10k', 'cases_per_10k'
+  covidVariable: 'cases', // 'deaths', 'deathsPer10k', 'casesPer10k'
   perDate: false,
   maxInfo: {
     country: null,
@@ -61,7 +61,7 @@ export const getters = {
   // Returns global or local max val depending og perDate and selected variable:
   maxVal(state, getters) {
     if (state.perDate) {
-      return getters.currentCovidData.max_vals[state.covidVariable]
+      return getters.currentCovidData.maxVals[state.covidVariable]
     }
 
     return state.covidMaxVals[state.covidVariable]

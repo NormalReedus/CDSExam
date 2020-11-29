@@ -40,12 +40,12 @@
         <v-radio label="Deaths" value="deaths" color="red"></v-radio>
         <v-radio
           label="Cases per 10k."
-          value="cases_per_10k"
+          value="casesPer10k"
           color="red"
         ></v-radio>
         <v-radio
           label="Deaths per 10k."
-          value="deaths_per_10k"
+          value="deathsPer10k"
           color="red"
         ></v-radio>
       </v-radio-group>

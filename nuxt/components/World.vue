@@ -30,9 +30,9 @@ export default {
     ...mapGetters(['currentCovidData', 'maxVal']),
 
     prettyVariable() {
-      if (this.covidVariable === 'cases_per_10k') {
+      if (this.covidVariable === 'casesPer10k') {
         return 'cases per 10k.'
-      } else if (this.covidVariable === 'deaths_per_10k') {
+      } else if (this.covidVariable === 'deathsPer10k') {
         return 'deaths per 10k.'
       } else {
         return this.covidVariable + '.'

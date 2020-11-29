@@ -58,7 +58,7 @@ export default {
         variable = 'Cases'
       } else if (this.covidVariable === 'deaths') {
         variable = 'Deaths'
-      } else if (this.covidVariable === 'cases_per_10k') {
+      } else if (this.covidVariable === 'casesPer10k') {
         variable = 'Cases per 10k'
       } else {
         variable = 'Deaths per 10k'
@@ -96,10 +96,10 @@ export default {
       const andAbove = this.perDate ? '' : '+'
 
       if (
-        this.covidVariable === 'cases_per_10k' ||
-        this.covidVariable === 'deaths_per_10k'
+        this.covidVariable === 'casesPer10k' ||
+        this.covidVariable === 'deathsPer10k'
       ) {
-        const decimals = this.covidVariable === 'cases_per_10k' ? 2 : 3
+        const decimals = this.covidVariable === 'casesPer10k' ? 2 : 3
         return maxLabel.toFixed(decimals) + andAbove
       } else {
         return Math.round(maxLabel) + andAbove
