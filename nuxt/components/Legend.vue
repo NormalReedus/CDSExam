@@ -74,13 +74,6 @@ export default {
       return variable + ' - ' + limits
     },
 
-    // maxVal() {
-    //   return this.$store.state.covidMaxVals[this.covidVariable]
-    // },
-    // localMaxVal() {
-    //   return this.currentCovidData.max_vals[this.covidVariable]
-    // },
-
     covidVariable() {
       return this.$store.state.covidVariable
     },
@@ -99,7 +92,7 @@ export default {
 
     legendLabel() {
       const maxLabel = this.maxVal
-    
+
       const andAbove = this.perDate ? '' : '+'
 
       if (
