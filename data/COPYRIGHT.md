@@ -1,6 +1,6 @@
-# Input data
+# Source data
 
-The data obtained from [the EU open data portal](https://opendata.ecdc.europa.eu/covid19/casedistribution/json/) are subject to the following copyrights belonging to the ECDC:
+The data obtained from [the EU open data portal](https://opendata.ecdc.europa.eu/covid19/casedistribution/json/) as well as our modified data are subject to the following copyright belonging to the ECDC:
 
 ## ECDC Copyright and Limited Reproduction Notices
 
