@@ -50,12 +50,6 @@ export default {
       this.$refs.world.updateMap()
     },
   },
-
-  head() {
-    return {
-      title: 'COVID-19 Heatmap',
-    }
-  },
 }
 </script>
 

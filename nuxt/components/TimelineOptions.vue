@@ -8,6 +8,7 @@
         dense
         class="timeline-options__radios d-flex"
         v-model="timelineSpeedModifier"
+        @change="hideMaxInfo"
         row
       >
         <v-radio label="Off" :value="0" color="red" class="mx-auto"></v-radio>
@@ -72,7 +73,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['setCurrentDataIndex']),
+    ...mapMutations(['setCurrentDataIndex', 'hideMaxInfo']),
 
     autoTimeline() {
       if (this.$data._timelineSpeedModifier == 0) return
