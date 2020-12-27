@@ -2,7 +2,7 @@
 
 Mikkel Plesner Ottosen & Magnus Bendix Borregaard
 
-# Abstract.
+# Abstract
 
 The European Union collects and publishes data on the current numbers of COVID-19 cases and deaths every day for countries and areas around the world. It can, however, be difficult to determine whether a country is ‘doing well’ with just an overview of the absolute values for their daily COVID-19 cases or deaths, and not the values per capita. To illustrate this discrepancy, we have created a heatmap that (among other things) allows the changing between absolute values and the same variable per 10,000 inhabitants. The results of using the heatmap illustrate how the absolute number of COVID-19 cases and deaths for a given country or area can be misleading, since a higher population will most often have a higher number of cases and deaths.
 
